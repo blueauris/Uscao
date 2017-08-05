@@ -1,0 +1,69 @@
+<html>
+<head><title>Combination Lock</title></head>
+<body background="/usaco/bg3.jpg">
+<img src="/usaco/cow1.jpg" width="742" height="118">
+<center>
+<b><font size="7">Combination Lock</font></b><br>
+Brian Dean
+</center>
+
+<iframe width="640" height="480" src="//www.youtube.com/embed/nPs1fvOBG9Y?rel=0" frameborder="0" allowfullscreen></iframe>
+
+<p> The process of solving this problem is described in the video above;
+the final code is shown below. </p>
+
+<pre>
+#include &lt;iostream&gt;
+#include &lt;fstream&gt;
+#include &lt;cstdlib&gt;
+using namespace std;
+
+int N;
+
+bool close(int a, int b)
+{
+  if (abs(a-b) &lt;= 2) return true;
+  if (abs(a-b) &gt;= N-2) return true;
+  return false;
+}
+
+bool close_enough(int n1, int n2, int n3,
+		  int c1, int c2, int c3)
+{
+  return close(n1,c1) && close(n2,c2) && close(n3,c3);
+}
+
+int main(void)
+{
+  int f1, f2, f3;
+  int m1, m2, m3;
+
+  ifstream fin("combo.in");
+  fin &gt;&gt; N;
+  fin &gt;&gt; f1 &gt;&gt; f2 &gt;&gt; f3;
+  fin &gt;&gt; m1 &gt;&gt; m2 &gt;&gt; m3;
+  fin.close();
+
+  int total = 0;
+  for (int n1=1; n1&lt;=N; n1++)
+    for (int n2=1; n2&lt;=N; n2++)
+      for (int n3=1; n3&lt;=N; n3++)
+	if (close_enough(n1,n2,n3,f1,f2,f3) ||
+	    close_enough(n1,n2,n3,m1,m2,m3))
+	  total++;
+
+  ofstream fout("combo.out");
+  fout &lt;&lt; total &lt;&lt; "\n";
+  fout.close();
+
+  return 0;
+}
+</pre>
+
+<br><br>
+<center>
+<a href="/usacogate?a=Z2Wm8G1gO8t"> USACO Gateway </a>  &nbsp;| &nbsp;
+<a href="mailto:rob.kolstad@gmail.com">Comment or Question </a>
+</center>
+</body>
+</html>

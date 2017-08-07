@@ -1,0 +1,25 @@
+Stringsobits
+
+01串
+Kim Schrijvers 
+
+译 by !Starliu
+　
+
+考虑排好序的N(N<=31)位二进制数。
+
+你会发现，这很有趣。因为他们是排列好的，而且包含所有可能的长度为N且含有1的个数小于等于L(L<=N)的数。
+
+你的任务是输出第I（1<=I<=长度为N的二进制数的个数）大的，长度为N，且含有1的个数小于等于L的那个二进制数。
+
+PROGRAM NAME: kimbits
+INPUT FORMAT
+共一行，用空格分开的三个整数N，L，I。
+
+SAMPLE INPUT (file kimbits.in) 
+5  3  19
+OUTPUT FORMAT
+共一行，输出满足条件的第I大的二进制数。
+
+SAMPLE OUTPUT (file kimbits.out)
+10011

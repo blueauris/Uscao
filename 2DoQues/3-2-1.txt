@@ -1,0 +1,19 @@
+Factorials
+
+阶乘
+
+译 by !Starliu
+
+N的阶乘写作N!表示小于等于N的所有正整数的乘积。阶乘会很快的变大，如13!就必须用32位整数类型来存储，70！即使用浮点数也存不下了。你的任务是找到阶乘最后面的非零位。举个例子,5!=1*2*3*4*5=120所以5!的最后面的非零位是2，7！=1*2*3*4*5*6*7=5040，所以最后面的非零位是4。
+
+PROGRAM NAME: fact4
+INPUT FORMAT
+共一行，一个整数不大于4，220的整数N。
+
+SAMPLE INPUT (file fact4.in) 
+7
+OUTPUT FORMAT
+共一行，输出N!最后面的非零位。
+
+SAMPLE OUTPUT (file fact4.out)
+4

@@ -1,22 +1,19 @@
 #!python3
 # -*- coding: utf-8 -*-
 
-## PROG: QUE_NAME
+## PROG: test
 import os
 import random
 
-filename="QUE_NAME"
-
+filename="test"
 finname = filename+'.in'
 os.chdir(os.getcwd())
 fin = open(finname, 'w')
-genData ='Test'
-## ç”Ÿæˆæµ‹è¯•æ•°æ®é›†
+## Éú³É²âÊÔÊı¾İ¼¯
 ##Todo
-
-
-
-
+a= random.randint(1,1024)
+b= random.randint(1,1024)
+genData = str(a)+' '+str(b)
 ##END
 fin.write(genData)
 fin.close()

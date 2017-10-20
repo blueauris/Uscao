@@ -1,0 +1,113 @@
+<html>
+<head> <title>Problem 58: The Clocks</title> </head>
+<body background="/usaco/bg3.jpg">
+<img src="/usaco/cow1.jpg" width="742" height="118">
+<center>
+<b><font size="7">The Clocks</font></b><br>
+<b>IOI'94 - Day 2</b>
+</center>
+
+Consider nine clocks arranged in a 3x3 array thusly:
+<PRE>
+|-------|    |-------|    |-------|    
+|       |    |       |    |   |   |    
+|---O   |    |---O   |    |   O   |          
+|       |    |       |    |       |           
+|-------|    |-------|    |-------|    
+    A            B            C
+
+|-------|    |-------|    |-------|
+|       |    |       |    |       |
+|   O   |    |   O   |    |   O   |
+|   |   |    |   |   |    |   |   |
+|-------|    |-------|    |-------|
+    D            E            F
+
+|-------|    |-------|    |-------|
+|       |    |       |    |       |
+|   O   |    |   O---|    |   O   |
+|   |   |    |       |    |   |   |
+|-------|    |-------|    |-------|
+    G            H            I
+</PRE>
+
+<p> The goal is to find a minimal sequence of moves to return all the
+dials to 12 o'clock. Nine different ways to turn the dials on the clocks
+are supplied via a table below; each way is called a move.  Select for
+each move a number 1 through 9 which will cause the dials of the affected
+clocks (see next table) to be turned 90 degrees clockwise.
+
+<table border="1">
+<tr><td> Move </td><td> Affected clocks </td>
+<tr><td align="center"> 1 </td><td align="center"> ABDE </td>
+<tr><td align="center"> 2 </td><td align="center"> ABC </td>
+<tr><td align="center"> 3 </td><td align="center"> BCEF </td>
+<tr><td align="center"> 4 </td><td align="center"> ADG </td>
+<tr><td align="center"> 5 </td><td align="center"> BDEFH </td>
+<tr><td align="center"> 6 </td><td align="center"> CFI </td>
+<tr><td align="center"> 7 </td><td align="center"> DEGH </td>
+<tr><td align="center"> 8 </td><td align="center"> GHI </td>
+<tr><td align="center"> 9 </td><td align="center"> EFHI</td>
+</table>
+</pre>
+
+<H3>Example </H4>
+
+Each number represents a time accoring to following table:
+ 
+<PRE>
+9 9 12       9 12 12       9 12 12        12 12 12      12 12 12 
+6 6 6  5 ->  9  9  9  8->  9  9  9  4 ->  12  9  9  9-> 12 12 12 
+6 3 6        6  6  6       9  9  9        12  9  9      12 12 12 
+</PRE>
+
+<p>[But this might or might not be the `correct' answer; see below.]
+
+<h3>PROGRAM NAME: clocks</h3>
+
+<h3>INPUT FORMAT</h3>
+
+<table border="1">
+<tr> <td> Lines 1-3: </td> <td> Three lines of three space-separated
+numbers; each number represents the start time of one clock, 3, 6, 9,
+or 12.  The ordering of the numbers corresponds to the first example
+above.
+</td> </tr>
+</table>
+
+<h3>SAMPLE INPUT (file clocks.in) </h3>
+
+<pre>
+9 9 12
+6 6 6
+6 3 6
+</pre>
+
+<h3>OUTPUT FORMAT</h3>
+
+<p>A single line that contains a space separated list of the shortest
+sequence of moves (designated by numbers) which returns all the clocks
+to 12:00.  If there is more than one solution, print the one which gives
+the lowest number when the moves are concatenated (e.g., 5 2 4 6 < 9 3
+1 1).
+
+<h3>SAMPLE OUTPUT (file clocks.out)</h3>
+
+<pre>
+4 5 8 9
+</pre>
+<br>
+<hr>
+<form action="/upload3" enctype="multipart/form-data" method="POST">
+<B>Submission file Name:</B> <input type="file" NAME="filename">
+<input type="submit" VALUE="Send it in!">
+<input type="hidden" name="a" value=HqmTqY7x7lz>
+<input type="hidden" name="S" value=clocks>
+</FORM>
+
+<center>
+<a href="/usacogate?a=HqmTqY7x7lz"> USACO Gateway </a> &nbsp;| &nbsp;
+<a href="mailto:kolstad@ace.delos.com">Comment or Question </a>
+</center>
+</body>
+</html>

@@ -1,0 +1,695 @@
+From: <ÓÉ Windows Internet Explorer 7 ±£´æ>
+Subject: Data Structures
+Date: Sun, 27 Dec 2009 22:52:32 +0800
+MIME-Version: 1.0
+Content-Type: multipart/related;
+	type="text/html";
+	boundary="----=_NextPart_000_000B_01CA8747.46311510"
+X-MimeOLE: Produced By Microsoft MimeOLE V6.00.2900.3350
+
+This is a multi-part message in MIME format.
+
+------=_NextPart_000_000B_01CA8747.46311510
+Content-Type: text/html;
+	charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://ace.delos.com/usacotext2?a=O5yNx64mY80&S=ds
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>Data Structures</TITLE>
+<META http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Diso-8859-1">
+<META content=3D"MSHTML 6.00.6000.16939" name=3DGENERATOR></HEAD>
+<BODY bgColor=3D#f0f0f0><FONT=20
+face=3D"Verdana,Tahoma,sans-serif,Arial,Lucida Sans,Gill Sans">
+<DIV=20
+style=3D"BORDER-RIGHT: 1px solid; PADDING-RIGHT: 1em; BORDER-TOP: 1px =
+solid; PADDING-LEFT: 1em; PADDING-BOTTOM: 1em; BORDER-LEFT: 1px solid; =
+WIDTH: 45em; PADDING-TOP: 1em; BORDER-BOTTOM: 1px solid; =
+BACKGROUND-COLOR: white">
+<TABLE cellSpacing=3D8>
+  <TBODY>
+  <TR>
+    <TD><IMG src=3D"http://ace.delos.com/usaco/cowhead2.gif"></TD>
+    <TD>&nbsp;&nbsp;&nbsp;</TD>
+    <TD><B><FONT size=3D5><FONT=20
+      face=3D"Verdana,Tahoma,sans-serif,Arial,Lucida Sans,Gill =
+Sans">Data=20
+      Structures </FONT></B></FONT></TD></TR></TBODY></TABLE>
+<H4>Prerequisite </H4>
+<UL>
+  <LI>Graph Theory </LI></UL>
+<H4>How to pick the perfect data structure</H4>
+<P>There are several aspect of data structures to consider when =
+selecting the=20
+proper way to represent the data for a problem.=20
+<H5>Will it work?</H5>
+<P>If the data struct won't work, it's not helpful at all. Ask yourself =
+what=20
+questions the algorithm will need to be able to ask the data structure, =
+and make=20
+sure the data structure can handle it. If not, then either more data =
+must be=20
+added to the structure, or you need to find a different representation.=20
+<H5>Can I code it?</H5>
+<P>If you don't know or can't remember how to code a given data =
+structure, pick=20
+a different one. Make sure that you have a good idea how each of the =
+operations=20
+will affect the structure of the data.=20
+<P>Another consideration here is memory. Will the data structure fit in =
+the=20
+available memory? If not, compact it or pick a new one. Otherwise, it is =
+already=20
+clear from the beginning that it won't work.=20
+<H5>Can I Code It In Time?</H5>
+<P>As this is a timed contest, you have three to five programs to write =
+in five=20
+hours. If it'll take you an hour and a half to code just the data =
+structure for=20
+the first problem, then you're almost certainly looking at the wrong =
+structure.=20
+<H5>Can I Debug It?</H5>
+<P>It is easy to forget this particular aspect of data structure =
+selection.=20
+Remember that a program is useless unless it works. Don't forget that =
+debugging=20
+time is a large portion of the contest time, so include its =
+consideration in=20
+calculating coding time.=20
+<P>What makes a data structure easy to debug? That is basically =
+determined by=20
+the following two properties.=20
+<UL>
+  <LI><B>State Is Easy To Examine</B> The smaller, more compact the=20
+  representation, in general, the easier it is to examine. Also, =
+statically=20
+  allocated arrays are <B>much</B> easier to examine than linked lists =
+or even=20
+  dynamically allocated arrays.=20
+  <LI><B>State can Be Displayed Easily</B> For the more complex data =
+structures,=20
+  the easiest way to examine them is to write a small routine to output =
+the=20
+  data. Unfortunately, given time constraints, you'll probably want to =
+limit=20
+  yourself to text output. This means that structures like trees and =
+graphs are=20
+  going to be difficult to examine. </LI></UL>
+<H5>Is It Fast?</H5>
+<P>This is, surprisingly, the least important consideration when picking =
+a data=20
+structure. A slow program will normally get a noticeable portion of the =
+points,=20
+but a fast, incorrect one will not, unless it gets lucky.=20
+<H5>Conclusion</H5>
+<P>In general, remember the KISS principle: ``Keep It Simple, Stupid.''=20
+Sometimes more complexity is very helpful, but make sure you're getting =
+your=20
+money's worth. Remember that taking the time to make sure you've got the =
+correct=20
+data structure at the start is a lot less expensive than having to =
+replace a=20
+data structure later.=20
+<H4>Things to Avoid: Dynamic Memory</H4>
+<P>In general, you should avoid dynamic memory, because:=20
+<CENTER><B>It Is Too Easy To Make Mistakes Using Dynamic =
+Memory</B></CENTER>
+<P>Overwriting past allocated memory, not freeing memory, and not =
+allocating=20
+memory are only some of the mistakes that are introduced when dynamic =
+memory is=20
+used. In addition, the failure modes for these errors are such that it's =
+hard to=20
+tell where the error occurred, as it's likely to be at a (potentially =
+much=20
+later) memory operation.=20
+<P>
+<CENTER><B>It Is Too Hard To Examine the Data Structure's =
+Contents</B></CENTER>
+<P>The interactive development environments available don't handle =
+dynamic=20
+memory well, especially for C.=20
+<P>Consider parallel arrays as an alternative to dynamic memory. One way =
+to do a=20
+linked list, where instead of keeping a next point, you keep a second =
+array,=20
+which has the index of the next element. Sometimes you may have to =
+dynamically=20
+allocate these, but as it should only be done once, it's much easier to =
+get=20
+right than allocating and freeing the memory for each insert and delete. =
+
+<P>All of this notwithstanding, sometimes dynamic memory is the way to =
+go,=20
+especially for large data structures where the size of the structure is =
+not=20
+known until you have the input.=20
+<H4>Things to Avoid: Coolness Factor </H4>
+<P>Try not to fall into the ``coolness'' trap. You may have just seen =
+the=20
+neatest data structure, but remember:=20
+<UL>
+  <LI><B>Cool ideas that don't work aren't. </B>
+  <LI><B>Cool ideas that'll take forever to code aren't, either</B> =
+</LI></UL>
+<P>It's much more important that your data structure and program work =
+than how=20
+impressive your data structure is.=20
+<H4>Basic Structures</H4>
+<P>There are five basic data structures: arrays, linked lists, stacks, =
+queues,=20
+and deque (pronounced deck). You might have seen these structures =
+before. If you=20
+have not, consult Sedgewick for what they are.=20
+<H5>Binary Search Trees</H5>
+<P>Binary search trees enable you to search a collection of objects =
+(each with a=20
+real or integer value) quickly to determine if a given value exists in =
+the=20
+collection.=20
+<P>Basically, a binary search tree is a weighted, rooted binary ordered =
+tree.=20
+That collection of adjectives means that each node in the tree might =
+have one=20
+`right' child and one `left' child (but both or either could be =
+missing). In=20
+addition, each node has an object associated with it, and the `weight' =
+of the=20
+node is the value of the object.=20
+<P>The binary search tree also has the property that each node's left =
+child and=20
+descendants of its left child have a value less than that of the node, =
+and each=20
+node's right child and its descendants have a value greater or equal to =
+it.=20
+<BR><IMG src=3D"http://ace.delos.com/usaco/TEXT/ds.bst.gif"><BR>
+<P>The nodes are generally represented as a structure with four fields, =
+a=20
+pointer to the node's left child, a pointer to the node's right child, =
+the=20
+weight of the object stored at this node, and a pointer to the object =
+itself.=20
+<H5>Why Are Binary Search Trees Useful?</H5>
+<P>Given a collection of N objects, a binary search tree takes only =
+O(log N)=20
+time to find an objects, assuming that the tree is not really poor (a =
+tree where=20
+each node has no left child means the search will take O(N) time, for =
+example).=20
+In addition, unlike just keeping a sorted array, inserting and deleting =
+objects=20
+only takes log N time as well.=20
+<H5>Variations on Binary Trees</H5>
+<P>Sometimes it's helpful to provide a link to a node's parent as well.=20
+<P>There are several variants that ensure that the trees are never poor. =
+Splay=20
+trees, Red-black trees, Treaps, B-trees, and AVL trees are some of the =
+more=20
+common examples. They are all much more complicated to code, and random =
+trees=20
+are generally good, so it's generally not worth it.=20
+<P>If you're concerned that the tree you created might be bad (it's =
+being=20
+created by inserting elements from an input file, for example), then =
+randomly=20
+order the elements before insertion.=20
+<H5>Hash Tables</H5>A hash table stores data with a very quick way to do =
+
+lookups. Let's say there is a collection of objects and a data structure =
+must=20
+quickly answer the question: ``Is this object in the data structure?'' =
+(e.g., is=20
+this word in the dictionary?). A hash table does this in less time than =
+it takes=20
+to do binary search.=20
+<P>The idea is this: find a function that maps the elements of the =
+collection to=20
+an integer between 1 and x (where x, in this explanation, is larger than =
+the=20
+number of elements in your collection). Keep an array indexed from 1 to =
+x, and=20
+store each element at the position that the function evaluates the =
+element as.=20
+Then, to determine if something is in your collection, just plug it into =
+the=20
+function and see whether or not that position is empty. If it is not =
+check the=20
+element there to see if it is the same as the something you're holding,=20
+<P>For example, presume the function is defined over 3-character words, =
+and is=20
+(first letter + (second letter * 3) + (third letter * 7)) mod 11 (A=3D1, =
+B=3D2,=20
+etc.), and the words are ``CAT'', ``CAR'', and ``COB''. When using =
+ASCII, this=20
+function takes ``CAT'' and maps it to 3, maps ``CAR'' to 0, and maps =
+``COB'' to=20
+7, so the hash table would look like this: <BR><TT><FONT=20
+size=3D2><BR>0:&nbsp;CAR<BR>1<BR>2<BR>3:&nbsp;CAT<BR>4<BR>5<BR>6<BR>7:&nb=
+sp;COB<BR>8<BR>9<BR>10<BR></FONT></TT>
+<P>Now, to see if ``BAT'' is in the table, plug it into the hash =
+function to get=20
+2. This position in the hash table is empty, so it is not in the =
+collection.=20
+``ACT'', on the other hand, returns the value 7, so the program must =
+check to=20
+see if that entry, ``COB'', is the same as ``ACT''.=20
+<P>Consider this function: <PRE>#define NHASH 8999           /* make =
+sure this is prime! */
+
+hashnum(p)
+char *p;
+{
+    unsigned int sum =3D 0;
+    for ( ; *p; p++)
+	sum =3D (sum &lt;&lt; 3) + *p;
+    return sum % NHASH;
+}
+</PRE>
+<P>This function will return *some* integer in the range 0..NHASH-1 for =
+every=20
+input. As it turns out, the output is fairly random. this simple =
+function for=20
+NHASH to be prime. Combine the above with a main program: <PRE>#include =
+<STDIO.H>
+
+main() {
+    FILE *in;
+    char line[100], *p;=20
+    in =3D fopen ("/usr/share/dict/words", "r");
+    while (fgets (line, 100, in)) {
+	for (p =3D line; *p; p++)
+	    if (*p =3D=3D '\n') { *p =3D '\0'; break; }
+	printf("%6d %s\n", hashnum(line), line);
+    }
+    exit (0);
+}
+</PRE>to yield numbers like this for the (start of the) english =
+dictionary: <PRE>  4645 aback
+  4678 abaft
+  6495 abandon
+  2634 abandoned
+  4810 abandoning
+   142 abandonment
+  7080 abandons
+  4767 abase
+  2240 abased
+  7076 abasement
+  4026 abasements
+  2255 abases
+  4770 abash
+   222 abashed
+   237 abashes
+  2215 abashing
+   361 abasing
+  4775 abate
+  2304 abated
+  3848 abatement
+   ... ...
+</PRE>
+<P>You can see that the function yields numbers that are all different =
+and are=20
+fairly random looking, at least in this small sample.=20
+<P>Of course, if one has NHASH+1 words, the pigeon-hole principle says =
+that at=20
+leaast one pair of them will yield the same function value. This is =
+called a=20
+'collision'. Pragmatic hash tables use a list of length NHASH to =
+represent the=20
+head of NHASH linked lists of words that all hashed to the same value.=20
+<P>Let's see how hashing is really used. First, start with a structure =
+that=20
+forms a linked list off the hash table. The linked list structure looks =
+like=20
+this: <PRE>struct hash_f {
+    struct hash_f *h_next;
+    char *h_string;
+    int   h_value;   /* some value associated with the string */
+               /* completely optional how it's used or even if it's =
+present */
+};
+
+struct hash_f *hashtable[NHASH];      /* the head of each linked list */
+                        /* automatically set to NULL since it's global =
+*/
+</PRE>
+<P>This makes a hash table that would look like this if two elements =
+were=20
+present: <PRE>       hashtable        *hash_f           *hash_f
+     +------------+
+   0 |            |  +-----------+    +-----------+
+     +------------+  |          *|-+  |          0|=20
+   1 |            |  +-----------+ |  +-----------+
+     +------------+  | 'string1' | |  | 'abc def' |
+   2 |          * |-&gt;+-----------+ +-&gt;+-----------+
+     +------------+  | val=3D1234  |    | val=3D43225 |
+   3 |            |  +-----------+    +-----------+
+     +------------+=20
+	...
+8998 |            |
+     +------------+
+</PRE>
+<P>Here's hashinsert: <PRE>struct hash_f *
+hashinsert(p, val)=20
+char *p;
+int val;
+{
+    int n =3D hashnum(p);				/* where in table? */
+    char *h =3D malloc( sizeof (struct hash_f) ); /* make a new hash =
+element */
+
+/* link into start of list: */
+    h-&gt;h_next =3D hashtable[n];
+    hashtable[n] =3D h;
+
+/* optional value: */
+    h-&gt;h_val =3D val;
+
+/* so we can later find the proper element in this chain: */
+    h-&gt;h_string =3D malloc( strlen(p) + 1 ); =20
+    strcpy (h-&gt;h_string, p);		    =20
+
+    return h;
+}
+</PRE>And here's hashlookup (which will return a pointer to the hash =
+structure=20
+if it's found): <PRE>struct hash_f *
+hashlookup(p) {
+    struct hash_f *h;
+
+    int n =3D hashnum(p);				/* where to start looking */
+
+    for (h =3D hashtable[n]; h; h=3Dh-&gt;h_next)	/* traverse linked =
+list */
+	if (0 =3D=3D strcmp (p, h-&gt;h_string))	/* string match? done! */
+	    return h;
+    return 0;					/* didn't find target */
+}
+</PRE>
+<P>Now you can insert strings quickly and look them up quickly, in=20
+size_of_linked_list/2 string compares, on average.=20
+<H5>Why Are Hash Tables Useful?</H5>
+<P>Hash tables enable, with a little bit of memory cost, programs to =
+perform=20
+lookups with almost constant work. Generally, the program must evaluate =
+the=20
+function and then possibly compare the looked up element to an entry or =
+a few=20
+entries in the table.=20
+<H5>Hashers</H5>
+<P>A more subtle, and often forgotten, technique to avoid collisions is =
+to pick=20
+a good hash function. For example, taking the three letter prefix as the =
+hash=20
+value for a dictionary would be very bad. Under this hash function, the =
+prefix=20
+``CON'' would have a huge number of entries. Pick a function where two =
+elements=20
+are unlikely to map to the same value:=20
+<UL>
+  <LI>Create a relatively huge value and mod it with the size of your =
+table=20
+  (this works especially well if your hash table is a prime size).=20
+  <LI>Primes are your friends. Multiply by them.=20
+  <LI>Try to have small changes map to completely different locations.=20
+  <LI>You don't want to have two small changes cancel each other out in =
+your=20
+  mapping function (a transposition, for example).=20
+  <LI>This is a whole field of study, and you could create a ``Perfect =
+Hash=20
+  Function'' that would give you no collisions, but, for your purposes, =
+that's=20
+  entirely too much work. Pick something that seems fairly random, and =
+see if it=20
+  works; it probably will. </LI></UL>
+<H5>Hash Table Variations</H5>
+<P>It is often quite useful to store more information that just the =
+value. One=20
+example is when searching a small subset of a large subset, and using =
+the hash=20
+table to store locations visited, you may want the value for searching a =
+
+location in the hash table with it.=20
+<P>Even a small hash table can improve runtime by drastically reducing =
+your=20
+search space. For example, keeping a dictionary hashed by the first =
+letter means=20
+that if you wanted to search for a word, you would only be looking at =
+words that=20
+have the same first letter.=20
+<H4>Special Trees Called 'Tries'</H4><BR><IMG=20
+src=3D"http://ace.delos.com/usaco/TEXT/ds1.gif"><BR>
+<P>A trie is, in short, a rooted tree. It has unbounded out-degree (a =
+node may=20
+logically have any number of children). The children of a node are =
+stored in a=20
+linked list, so each node has two pointers, next sibling and first =
+child.=20
+<P>Tries store a collection of sequences. Every path from the root to a =
+leaf=20
+specifies an element of that collection. For example, for the trie =
+illustrated,=20
+the collection specified is ``CAR'', ``CAT'', and ``COB'', presuming no =
+other=20
+nodes exist.=20
+<P>To determine if a sequence is in the collection, start at the root, =
+search=20
+through its children for the first element of that sequence. If no match =
+is=20
+found, the sequence is not in the collection. Otherwise, search the =
+children of=20
+that node similarly and for subsequent element.=20
+<P>Tries sport several nice features. Checking to see if an element is =
+in the=20
+list takes time bounded by the length of the sequence times the maximum =
+number=20
+of children a node has. Additionally, this data structure can often use =
+less=20
+memory than other representations, because prefixes only appear once (in =
+our=20
+example, there is only one `CA' node even though `CAR' and `CAT' =
+appear).=20
+<P>In general, a trie is nice to use when you want to ask this question =
+a lot:=20
+Does there exist a sequence (word, multi-digit number, or other type) =
+that=20
+starts with this?=20
+<H5>Trie Variations</H5>
+<P>Some common slight alterations to tries are:=20
+<UL>
+  <LI>If your list may contain two words, one of which is a prefix of =
+the other,=20
+  you have to add a flag at each node which says ``A word ends here.'' =
+For=20
+  example, if you wanted to also have ``CA'' in your trie, it would have =
+to be=20
+  flagged.=20
+  <LI>It sometimes helps to keep the linked list of children in sorted =
+order.=20
+  This increases the time to build the trie, but decreases the time to =
+search=20
+  it.=20
+  <LI>If you have many words with similar prefixes but unique endings, =
+it is=20
+  sometimes helpful to put ``special'' nodes that stand for a sequence=20
+  themselves. For example, if you want to represent ``CARTING,'' =
+``COBBLER,''=20
+  and ``CATCHING,'' memory constraints may make it more reasonable to =
+represent=20
+  a ``RTING,'' ``BBLER,'' and ``TCHING'' node. Note that this increases =
+the=20
+  complexity dramatically. </LI></UL>
+<H4>Heap</H4>
+<P>A heap (sometimes called a priority queue) is a complete binary tree =
+in which=20
+every node's value is less than both of its children's values: <BR><IMG=20
+src=3D"http://ace.delos.com/usaco/TEXT/ds2.gif"><BR>
+<H5>Heap Representation</H5>
+<P>If the tree is filled in from left to right level by level (that is, =
+the tree=20
+is complete except for its lowest level, on which the elements are =
+filled in=20
+from left to right), then the heap can be stored in an array, which is =
+just the=20
+top level from left to right, the second level, and so on.=20
+<P>The heap given would be: <BR><TT><FONT=20
+size=3D2><BR>3&nbsp;5&nbsp;9&nbsp;6&nbsp;12&nbsp;13&nbsp;10&nbsp;8&nbsp;1=
+1<BR></FONT></TT>
+<P>In this representation, the children of the node at position x are 2x =
+and=20
+2x+1 (assuming 1 based indexing), and the parent of x is truncate(x/2).=20
+<H5>How Do I Add And Remove things To A Heap?</H5>
+<P>To add an element, put it at the end of the array. Now, as long as =
+it's below=20
+its current parent, swap it with its parent. For example, to add the =
+number 4,=20
+the heap array would go through the following states: <BR><TT><FONT=20
+size=3D2><BR>&nbsp;3&nbsp;&nbsp;5&nbsp;&nbsp;9&nbsp;&nbsp;6&nbsp;12&nbsp;=
+13&nbsp;10&nbsp;&nbsp;8&nbsp;11&nbsp;&nbsp;4<BR>&nbsp;3&nbsp;&nbsp;5&nbsp=
+;&nbsp;9&nbsp;&nbsp;6&nbsp;&nbsp;4&nbsp;13&nbsp;10&nbsp;&nbsp;8&nbsp;11&n=
+bsp;12<BR>&nbsp;3&nbsp;&nbsp;4&nbsp;&nbsp;9&nbsp;&nbsp;6&nbsp;&nbsp;5&nbs=
+p;13&nbsp;10&nbsp;&nbsp;8&nbsp;11&nbsp;12<BR></FONT></TT>
+<P>Deleting an element is also relatively easy. Take the last element in =
+the=20
+array and replace the element you wish to delete with it. While one of =
+its=20
+children is less than it, pick the smaller of the two and swap with it. =
+For=20
+example, to delete 3: <BR><TT><FONT=20
+size=3D2><BR>11&nbsp;&nbsp;5&nbsp;&nbsp;9&nbsp;&nbsp;6&nbsp;12&nbsp;13&nb=
+sp;10&nbsp;&nbsp;8<BR>&nbsp;5&nbsp;11&nbsp;&nbsp;9&nbsp;&nbsp;6&nbsp;12&n=
+bsp;13&nbsp;10&nbsp;&nbsp;8<BR>&nbsp;5&nbsp;&nbsp;6&nbsp;&nbsp;9&nbsp;11&=
+nbsp;12&nbsp;13&nbsp;10&nbsp;&nbsp;8<BR>&nbsp;5&nbsp;&nbsp;6&nbsp;&nbsp;9=
+&nbsp;&nbsp;8&nbsp;12&nbsp;13&nbsp;10&nbsp;11<BR></FONT></TT>
+<H5>What If I Want To Alter A Value?</H5>
+<P>To alter a value upwards, change the value, and swap with its parents =
+as long=20
+as necessary.=20
+<P>To alter a value downwards, change the value, and swap with the =
+smaller of=20
+its two children as long as necessary.=20
+<H5>Why Would I Use This?</H5>
+<P>A heap makes it very easy to ask the question ``What's the smallest =
+thing?''=20
+in a collection of dynamic values. It's a compact representation and =
+quick to=20
+compute. An example of a location where this can be helpful is =
+Dijkstra's=20
+algorithm.=20
+<H5>Heap Variations</H5>
+<P>In this representation, just the weight was kept. Usually you want =
+more data=20
+than that, so you can either keep that data and move it (if it's small) =
+or keep=20
+pointers to the data.=20
+<P>Since when you want to fiddle with values, the first thing you have =
+to do is=20
+find the location of the value you wish to alter, it's often helpful to =
+that=20
+data around. (e.g., node x is represented in location 16 of the heap).=20
+</P></DIV><BR>
+<CENTER><A href=3D"http://ace.delos.com/usacogate?a=3DO5yNx64mY80">USACO =
+Gateway</A>=20
+| <A href=3D"mailto:kolstad@ace.delos.com">Comment or Question</A>=20
+</CENTER></FONT></BODY></HTML>
+
+------=_NextPart_000_000B_01CA8747.46311510
+Content-Type: image/gif
+Content-Transfer-Encoding: base64
+Content-Location: http://ace.delos.com/usaco/cowhead2.gif
+
+R0lGODlhQQBRAPYAAP///wgICBAQEBgYGM7Ozvfv7//39/8AALWEa4RSAP/3nP/vABAQGAgIEL21
+xjkxQtbO3s7G1rWtvTEpOSkhMca9zkI5SiEYKVpKY2NSa1JCWko5UoxzlHNae2tSc5x7pbWUva2M
+taWErb2UxpRznPfO/9at3saczt6t57WMvffG/9al3v/3/87GztbO1t7W3ufe5721va2lrbWttca9
+xpSMlJyUnKWcpf/v/9bG1r2tvc69zrWltf/n///e/zkxOTEpMf/W/1pKWoRrhK2MrSkhKVJCUntj
+e//O/86lzvfG96WEpZx7nHNac72Uvee155RzlLWMtUo5SmtSa4xrjK2ErYRjhGNKY0IxQqV7pVpC
+WntaeyEYITkpOVI5UjEhMRgQGCkYKRAIEAgACPe97wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5
+BAEAAAcALAAAAABBAFEAAAf+gAeCg4SFhoeIiYJlio2Oj5AHZZOTkZaXiJRlCQmbnZigkZqdm56k
+oZiaqpScrZ2cpqWol5Otpq62sLaejLOirre4pby3vb6PsbjAr7rCx5DByrmkypXPjbXM0snb147R
+1dPd3orgy9LO5Inm6O2f6ofs2u6w8Jnt8sLG9oPs+cD7+C1C9w+WLIH9CNKbFpBfMV4L5zWEp4mA
+RQKq8KXztqrMxY8gMWajN5EWpQUoUy6oGBLkv5LQyqicSXNSy48jx6WSmXISSp4ra3q8iZGkyZ4/
+eQJVOtPmTXkw4zVN+hNp0JVLifoTVbXrVaVMv/58ai5qIbBUv8r0Kfbqyqf++KBZbeuz7tqwa1vm
+BCbXK967dP3q1Wftm8qwNBN3XTvW5bl3hucmXlVz8VCcBJEpTjoJgOfPnk9azeuYVKy+PSmBLgO6
+NQC2gnEW1oQa6+pJCjp/1hTaK1aXvu5i3K2guHHWuI8jB9oT+CxKFlm/Pm48d/Xq0plzpnTsMnLl
+Za7nTp5799TDMQv30wQ+/HVK2M1vXolNeuiJ8MeTL67KeGvtWPWUiX3/dfRaeOxhlyCByKUW3U/x
+7BYAGGE0oNt/uyXYHoKudTTUWoboFoQKJJJ4m2oF9reKayweSNtZAJQoIxC8oZihjCXy1mKHLKoX
+AI4qBFEGjjpSAqSMF+7+6CKSDC4So4xIDHmkCkZOieOBSt43CZH3CQIGjl9aKeaRy2V5IJVAIrcI
+Fk++RqKUY74J55VYtrjllkeGtogmcaYpJoFKloEFmmm+FqKcc06pCplmgmalmmdRWeWjqxTaqKOF
+NjTkopRyimSWOn7GJQCHSpqoopN+uluH2QH6JKSEnNrnn6v1uCKrpc7aJ4Ydhqgbd7nqSuuqPaIi
+q7B01tnrc8g+et+OZn3T7JTK4trdtES6mqGhz+DZbJIF7kZOqmOCy+uB6ix3LKKB2gcsRyfCaaOd
+gL57jbYuNgrui+Oae6m2/FLkL722qifQvD1Cay9CkiCsisLRClxkqCc9MhwhqwivZrGvGGcs7sax
+FpzkhRGnKzKD7oIMI8bx6qlyP/p6+DLMoKoy81n4LnxziCnuDI2WPotisDqBAAA7
+
+------=_NextPart_000_000B_01CA8747.46311510
+Content-Type: image/gif
+Content-Transfer-Encoding: base64
+Content-Location: http://ace.delos.com/usaco/TEXT/ds.bst.gif
+
+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
+r3wtawEAADs=
+
+------=_NextPart_000_000B_01CA8747.46311510
+Content-Type: image/gif
+Content-Transfer-Encoding: base64
+Content-Location: http://ace.delos.com/usaco/TEXT/ds1.gif
+
+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
+
+------=_NextPart_000_000B_01CA8747.46311510
+Content-Type: image/gif
+Content-Transfer-Encoding: base64
+Content-Location: http://ace.delos.com/usaco/TEXT/ds2.gif
+
+R0lGODdh6wCeAIAAAAAAAP///ywAAAAA6wCeAAAC/oyPqcvtD6OctNqLs968+w+G4kiW5omm6sq2
+7gvH8kzX9o3n+s73/g8MCofEovGITCqXzKbzCY1Kp9Sq9YqtArbbrPcHOIS/ZN+4jMad0+wZtw13
+r+P01byON93zfNC+D4jB9RdYyEDogGiIp5jYuJjWtfEI+UUZcVlplYmpCccpIelpCUpROnp0WqGK
+KsS62kr1aiEay1TLMmtLo6vRu/vy6wtsJDxpTEyCW4Oc7NfT7MwR/UEtfWFdnX0NsWzGDbM9Ig6O
+QD5ernKuvJ7snZq+OtjQjvL4Vt5Yn4J49r6L75CWP/72DQxojk3BeAjjSGp47V+kefECGARzEUtG
+/mgVLQbaKGUQSB0SO7YZaTKlypUsW7p8CTOmTAMEy1BCmaQfmZvE9HnJhLMIT42wWgG9UiooEFBK
+QyQddaqpB1VSSQ4LedXQrKoZtmqdCsXrx2dNenGNgezshF9qW0Rr+8AYXH56lMits22ugmZ6lamD
+h05hLqF10dTra60v2GCu7M3kIU6xyXOSMVWWQTlKybGDnWzm3HnJZ0AGL5uj6Kn0rTGjH5dN6DrL
+mqpBcVaevaOWSBeidrudgzq3P8iwLR4Wg5z3aZpng+cYXtzOgn0LmZtmRk95AtXMlwOrqV1Ma7LG
+vQOcTh19eN3Xee3lvnf97PZutl8EH9pj8u/mzI/HD19egLagJtI6FDnHD0II2nAHfbElItCDUxDi
+oITR/Wfha3FleEsoHNrl4YeAhSjiEEyV2BgtKAYR1YrfdOVibpPE+FwHFbJkFo3YLaYjWk71GE5g
+QOZXzZBEkmdkYUkicWOPTdL4ZIxRujjlklZeieV0WmZ5yIL2NFglXhf+hSGX9nUH4H5m2jcekmqu
+Kd59W8KZUJtFlklndW7NSad+NDGGJ5y9Abpdn6fZOY2CEBnKaKOOPgpppJJOSmmlll6Kaaaabspp
+p5QWAAA7
+
+------=_NextPart_000_000B_01CA8747.46311510--

@@ -1,0 +1,781 @@
+From: <ÓÉ Windows Internet Explorer 7 ±£´æ>
+Subject: Dynamic Programming
+Date: Sun, 27 Dec 2009 22:53:08 +0800
+MIME-Version: 1.0
+Content-Type: multipart/related;
+	type="text/html";
+	boundary="----=_NextPart_000_0016_01CA8747.5BC81EF0"
+X-MimeOLE: Produced By Microsoft MimeOLE V6.00.2900.3350
+
+This is a multi-part message in MIME format.
+
+------=_NextPart_000_0016_01CA8747.5BC81EF0
+Content-Type: text/html;
+	charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://ace.delos.com/usacotext2?a=O5yNx64mY80&S=dp
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>Dynamic Programming</TITLE>
+<META http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Diso-8859-1">
+<META content=3D"MSHTML 6.00.6000.16939" name=3DGENERATOR></HEAD>
+<BODY bgColor=3D#f0f0f0><FONT=20
+face=3D"Verdana,Tahoma,sans-serif,Arial,Lucida Sans,Gill Sans">
+<DIV=20
+style=3D"BORDER-RIGHT: 1px solid; PADDING-RIGHT: 1em; BORDER-TOP: 1px =
+solid; PADDING-LEFT: 1em; PADDING-BOTTOM: 1em; BORDER-LEFT: 1px solid; =
+WIDTH: 45em; PADDING-TOP: 1em; BORDER-BOTTOM: 1px solid; =
+BACKGROUND-COLOR: white">
+<TABLE cellSpacing=3D8>
+  <TBODY>
+  <TR>
+    <TD><IMG src=3D"http://ace.delos.com/usaco/cowhead2.gif"></TD>
+    <TD>&nbsp;&nbsp;&nbsp;</TD>
+    <TD><B><FONT size=3D5><FONT=20
+      face=3D"Verdana,Tahoma,sans-serif,Arial,Lucida Sans,Gill =
+Sans">Dynamic=20
+      Programming </FONT></B></FONT></TD></TR></TBODY></TABLE>
+<H4>Introduction </H4>
+<P>Dynamic programming is a confusing name for a programming technique =
+that=20
+dramatically reduces the runtime of algorithms: from exponential to =
+polynomial.=20
+The basic idea is to try to avoid solving the same problem or subproblem =
+twice.=20
+Here is a problem to demonstrate its power:=20
+<P>Given a sequence of as many as 10,000 integers (0 &lt; integer &lt; =
+100,000),=20
+what is the maximum decreasing subsequence? Note that the subsequence =
+does not=20
+have to be consecutive.=20
+<H4>Recursive Descent Solution</H4>
+<P>The obvious approach to solving the problem is recursive descent. One =
+need=20
+only find the recurrence and a terminal condition. Consider the =
+following=20
+solution: <BR><TT><FONT=20
+size=3D2><BR>&nbsp;1&nbsp;#include&nbsp;&lt;stdio.h&gt;<BR><BR><BR>&nbsp;=
+2&nbsp;&nbsp;long&nbsp;n,&nbsp;sequence[10000];<BR>&nbsp;3&nbsp;&nbsp;mai=
+n&nbsp;()&nbsp;{<BR>&nbsp;4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FILE=
+&nbsp;*in,&nbsp;*out;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;<BR>&nbsp;5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int&nbsp;i;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;<BR>&nbsp;6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+in&nbsp;=3D&nbsp;fopen&nbsp;("input.txt",&nbsp;"r");&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;<BR>&nbsp;7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;out&nbsp;=3D=
+&nbsp;fopen&nbsp;("output.txt",&nbsp;"w");&nbsp;&nbsp;&nbsp;<BR>&nbsp;8&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fscanf(in,&nbsp;"%ld",&nbsp;&amp;=
+n);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;<BR>&nbsp;9&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;(i&=
+nbsp;=3D&nbsp;0;&nbsp;i&nbsp;&lt;&nbsp;n;&nbsp;i++)&nbsp;fscanf(in,&nbsp;=
+"%ld",&nbsp;&amp;sequence[i]);<BR>10&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;fprintf&nbsp;(out,&nbsp;"%d\n",&nbsp;check&nbsp;(0,&nbsp;0,&nbsp;999=
+99));<BR>11&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;exit&nbsp;(0);<BR>12=
+&nbsp;&nbsp;}<BR><BR><BR>13&nbsp;&nbsp;check&nbsp;(start,&nbsp;nmatches,&=
+nbsp;smallest)&nbsp;{<BR>14&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int&nbsp;b=
+etter,&nbsp;i,&nbsp;best=3Dnmatches;<BR>15&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;for&nbsp;(i&nbsp;=3D&nbsp;start;&nbsp;i&nbsp;&lt;&nbsp;n;&nbsp;i++)&=
+nbsp;{<BR>16&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;i=
+f&nbsp;(sequence[i]&nbsp;&lt;&nbsp;smallest)&nbsp;{<BR>17&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bette=
+r&nbsp;=3D&nbsp;check&nbsp;(i,&nbsp;nmatches+1,&nbsp;sequence[i]);<BR>18&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;if&nbsp;(better&nbsp;&gt;&nbsp;best)&nbsp;best&nbsp;=3D&nbsp;be=
+tter;<BR>19&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<=
+BR>20&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<BR>21&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;return&nbsp;best;<BR>22&nbsp;&nbsp;}<BR></FONT></TT>
+<P>Lines 1-9 and and 11-12 are arguably boilerplate. They set up some =
+standard=20
+variables and grab the input. The magic is in line 10 and the recursive =
+routine=20
+`check'. The `check' routine knows where it should start searching for =
+smaller=20
+integers, the length of the longest sequence so far, and the smallest =
+integer so=20
+far. At the cost of an extra call, it terminates `automatically' when =
+`start' is=20
+no longer within proper range. The `check' routine is simplicity itself. =
+It=20
+traverses along the list looking for a smaller integer than the =
+`smallest' so=20
+far. If found, `check' calls itself recursively to find more.=20
+<P>The problem with the recursive solution is the runtime: <BR><TT><FONT =
+
+size=3D2><BR>&nbsp;&nbsp;N&nbsp;&nbsp;&nbsp;Seconds<BR>&nbsp;&nbsp;60&nbs=
+p;&nbsp;&nbsp;0.130<BR>&nbsp;&nbsp;70&nbsp;&nbsp;&nbsp;0.360<BR>&nbsp;&nb=
+sp;80&nbsp;&nbsp;&nbsp;2.390<BR>&nbsp;&nbsp;90&nbsp;&nbsp;13.190<BR></FON=
+T></TT>
+<P>Since the particular problem of interest suggests that the maximum =
+length of=20
+the sequence might approach six digits, this solution is of limited =
+interest.=20
+<H5>Starting At The End</H5>
+<P>When solutions don't work by approaching them `forwards' or `from the =
+front',=20
+it is often fruitful to approach the problem backward. In this case, =
+that means=20
+looking at the end of the sequence first.=20
+<P>Additionally, it is often fruitful to trade a bit of storage for =
+execution=20
+efficiency. Another program might work from the end of the sequence, =
+keeping=20
+track of the longest descending (sub-)sequence so far in an auxiliary =
+variable.=20
+<P>Consider the sequence starting at the end, of length 1. Any sequence =
+of=20
+length 1 meets all the criteria for a longest sequence. Notate the =
+`bestsofar'=20
+array as `1' for this case.=20
+<P>Consider the last two elements of the sequence. If the penultimate =
+number is=20
+larger than the last one, then the `bestsofar' is 2 (which is 1 + =
+`bestsofar'=20
+for the last number). Otherwise, it's `1'.=20
+<P>Consider any element prior to the last two. Any time it's larger than =
+an=20
+element closer to the end, its `bestsofar' element becomes at least one =
+larger=20
+than that of the smaller element that was found. Upon termination, the =
+largest=20
+of the `bestsofar's is the length of the longest descending subsequence. =
+
+<P>This is fairly clearly an O(<I>N</I> <SUP>2</SUP>) algorithm. Check =
+out its=20
+code: <BR><TT><FONT=20
+size=3D2><BR>&nbsp;1&nbsp;&nbsp;#include&nbsp;&lt;stdio.h&gt;<BR>&nbsp;2&=
+nbsp;&nbsp;#define&nbsp;MAXN&nbsp;10000<BR>&nbsp;3&nbsp;&nbsp;main&nbsp;(=
+)&nbsp;{<BR>&nbsp;4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;long&nbsp;num[MAXN=
+],&nbsp;bestsofar[MAXN];<BR>&nbsp;5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FI=
+LE&nbsp;*in,&nbsp;*out;<BR>&nbsp;6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lon=
+g&nbsp;n,&nbsp;i,&nbsp;j,&nbsp;longest&nbsp;=3D&nbsp;0;<BR>&nbsp;7&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;in&nbsp;=3D&nbsp;fopen&nbsp;("input.txt",&nb=
+sp;"r");<BR>&nbsp;8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;out&nbsp;=3D&nbsp;=
+fopen&nbsp;("output.txt",&nbsp;"w");<BR>&nbsp;9&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;fscanf(in,&nbsp;"%ld",&nbsp;&amp;n);<BR>10&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;for&nbsp;(i&nbsp;=3D&nbsp;0;&nbsp;i&nbsp;&lt;&nbsp;n;&nbsp=
+;i++)&nbsp;fscanf(in,&nbsp;"%ld",&nbsp;&amp;num[i]);<BR>11&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;bestsofar[n-1]&nbsp;=3D&nbsp;1;<BR>12&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;for&nbsp;(i&nbsp;=3D&nbsp;n-1-1;&nbsp;i&nbsp;&gt;=3D=
+&nbsp;0;&nbsp;i--)&nbsp;{<BR>13&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;bestsofar[i]&nbsp;=3D&nbsp;1;<BR>14&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;(j&nbsp;=3D&nbsp;i+1;&nb=
+sp;j&nbsp;&lt;&nbsp;n;&nbsp;j++)&nbsp;{<BR>15&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(num[j]&n=
+bsp;&lt;&nbsp;num[i]&nbsp;&amp;&amp;&nbsp;bestsofar[j]&nbsp;&gt;=3D&nbsp;=
+bestsofar[i])&nbsp;&nbsp;{<BR>16&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bestso=
+far[i]&nbsp;=3D&nbsp;bestsofar[j]&nbsp;+&nbsp;1;<BR>17&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;if&nbsp;(bestsofar[i]&nbsp;&gt;&nbsp;longest)&nbsp;longes=
+t&nbsp;=3D&nbsp;bestsofar[i];<BR>18&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<BR>19&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<BR>20&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;}<BR>21&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fprintf(out,&nbsp;"b=
+estsofar&nbsp;is&nbsp;%d\n",&nbsp;longest);<BR>22&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;exit(0);<BR>23&nbsp;&nbsp;}<BR></FONT></TT>
+<P>Again, lines 1-10 are boilerplate. Line 11 sets up the end condition. =
+Lines=20
+12-20 run the O(<I>N</I> <SUP>2</SUP>) algorithm in a fairly =
+straightforward way=20
+with the `i' loop counting backwards and the `j' loop counting forwards. =
+One=20
+line longer then before, the runtime figures show better performance:=20
+<BR><TT><FONT=20
+size=3D2><BR>&nbsp;&nbsp;&nbsp;N&nbsp;&nbsp;&nbsp;&nbsp;Secs<BR>&nbsp;100=
+0&nbsp;&nbsp;0.080<BR>&nbsp;2000&nbsp;&nbsp;0.240<BR>&nbsp;3000&nbsp;&nbs=
+p;0.550<BR>&nbsp;4000&nbsp;&nbsp;0.950<BR>&nbsp;5000&nbsp;&nbsp;1.450<BR>=
+&nbsp;6000&nbsp;&nbsp;2.080<BR>&nbsp;7000&nbsp;&nbsp;2.990<BR>&nbsp;8000&=
+nbsp;&nbsp;3.700<BR>&nbsp;9000&nbsp;&nbsp;4.700<BR>10000&nbsp;&nbsp;6.330=
+<BR>11000&nbsp;&nbsp;7.350<BR></FONT></TT>The=20
+algorithm still runs too slow (for competitions) at N=3D9000.=20
+<P>That inner loop (``search for any smaller number'') begs to have some =
+storage=20
+traded for it.=20
+<P>A different set of values might best be stored in the auxiliary =
+array.=20
+Implement an array `bestrun' whose index is the length of a long =
+subsequence and=20
+whose value is the first (and, as it turns out, `best') integer that =
+heads that=20
+subsequence. Encountering an integer larger than one of the values in =
+this array=20
+means that a new, longer sequence can potentially be created. The new =
+integer=20
+might be a new `best head of sequence', or it might not. Consider this =
+sequence:=20
+<BR><TT><FONT=20
+size=3D2><BR>&nbsp;&nbsp;&nbsp;10&nbsp;8&nbsp;9&nbsp;4&nbsp;6&nbsp;3<BR><=
+/FONT></TT>Scanning=20
+from right to left (backward to front), the `bestrun' array has but a =
+single=20
+element after encountering the 3: <BR><TT><FONT=20
+size=3D2><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0:3<BR></FONT></TT>Conti=
+nuing the=20
+scan, the `6' is larger than the `3', to the `bestrun' array grows:=20
+<BR><TT><FONT=20
+size=3D2><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0:3<BR>&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;1:6<BR></FONT></TT>The=20
+`4' is not larger than the `6', though it is larger than the `3', so the =
+
+`bestrun' array changes: <BR><TT><FONT=20
+size=3D2><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0:3<BR>&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;1:4<BR></FONT></TT>The=20
+`9' extends the array: <BR><TT><FONT=20
+size=3D2><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0:3<BR>&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;1:4<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2:9<BR></FO=
+NT></TT>The=20
+`8' changes the array similar to the earlier case with the `4': =
+<BR><TT><FONT=20
+size=3D2><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0:3<BR>&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;1:4<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2:8<BR></FO=
+NT></TT>The=20
+`10' extends the array again: <BR><TT><FONT=20
+size=3D2><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0:3<BR>&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;1:4<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2:8<BR>&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3:10<BR></FONT></TT>and=20
+yields the answer: 4 (four elements in the array).=20
+<P>Because the `bestrun' array probably grows much less quickly than the =
+length=20
+of the processed sequence, this algorithm probabalistically runs much =
+faster=20
+than the previous one. In practice, the speedup is large. Here's a =
+coding of=20
+this algorithm: <BR><TT><FONT=20
+size=3D2><BR>&nbsp;1&nbsp;&nbsp;#include&nbsp;&lt;stdio.h&gt;<BR>&nbsp;2&=
+nbsp;&nbsp;#define&nbsp;MAXN&nbsp;200000<BR>&nbsp;3&nbsp;&nbsp;main&nbsp;=
+()&nbsp;{<BR>&nbsp;4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FILE&nbsp;*in,&nb=
+sp;*out;<BR>&nbsp;5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;long&nbsp;num[MAXN=
+],&nbsp;bestrun[MAXN];<BR>&nbsp;6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;long=
+&nbsp;n,&nbsp;i,&nbsp;j,&nbsp;highestrun&nbsp;=3D&nbsp;0;<BR>&nbsp;7&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;in&nbsp;=3D&nbsp;fopen&nbsp;("input.txt",&=
+nbsp;"r");<BR>&nbsp;8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;out&nbsp;=3D&nbs=
+p;fopen&nbsp;("output.txt",&nbsp;"w");<BR>&nbsp;9&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;fscanf(in,&nbsp;"%ld",&nbsp;&amp;n);<BR>10&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;for&nbsp;(i&nbsp;=3D&nbsp;0;&nbsp;i&nbsp;&lt;&nbsp;n;&nb=
+sp;i++)&nbsp;fscanf(in,&nbsp;"%ld",&nbsp;&amp;num[i]);<BR>11&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;bestrun[0]&nbsp;=3D&nbsp;num[n-1];<BR>12&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;highestrun&nbsp;=3D&nbsp;1;<BR>13&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;for&nbsp;(i&nbsp;=3D&nbsp;n-1-1;&nbsp;i&nbsp;&gt;=3D=
+&nbsp;0;&nbsp;i--)&nbsp;{<BR>14&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;if&nbsp;(num[i]&nbsp;&lt;&nbsp;bestrun[0])&nbsp;{<BR>15=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b=
+estrun[0]&nbsp;=3D&nbsp;num[i];<BR>16&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;continue;<BR>17&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;}<BR>18&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;for&nbsp;(j&nbsp;=3D&nbsp;highestrun&nbsp;-&nbsp;1;&nbsp;j&nbsp;&=
+gt;=3D&nbsp;0;&nbsp;j--)&nbsp;{<BR>19&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(num[i]&nbsp;&gt;&nbsp;bestru=
+n[j])&nbsp;{<BR>20&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(j&nbsp;=3D=3D&nbsp;high=
+estrun&nbsp;-&nbsp;1&nbsp;||&nbsp;num[i]&nbsp;&lt;&nbsp;bestrun[j+1]){<BR=
+>21&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bestrun[++j]&nbsp;=3D&n=
+bsp;num[i];<BR>22&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(=
+j&nbsp;=3D=3D&nbsp;highestrun)&nbsp;highestrun++;<BR>23&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<BR>24&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<BR>25&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<B=
+R>26&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<BR>27&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;}<BR>28&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;printf("=
+best&nbsp;is&nbsp;%d\n",&nbsp;highestrun);<BR>29&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;exit(0);<BR>30&nbsp;&nbsp;}<BR></FONT></TT>
+<P>Again, lines 1-10 are boilerplate. Lines 11-12 are initialization. =
+Lines=20
+14-17 are an optimization for a new `smallest' element. They could have =
+been=20
+moved after line 26. Mostly, these lines only effect the `worst' case of =
+the=20
+algorithm when the input is sorted `badly'.=20
+<P>Lines 18-26 are the meat that searches the bestrun list and contain =
+all the=20
+exceptions and tricky cases (bigger than first element? insert in =
+middle? extend=20
+the array?). You should try to code this right now - without memorizing =
+it.=20
+<P>The speeds are impressive. The table below compares this algorithm =
+with the=20
+previous one, showing this algorithm worked for N well into five digits: =
+
+<BR><TT><FONT=20
+size=3D2><BR>&nbsp;&nbsp;N&nbsp;&nbsp;&nbsp;&nbsp;orig&nbsp;&nbsp;&nbsp;&=
+nbsp;Improved<BR>&nbsp;1000&nbsp;&nbsp;0.080&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;0.030<BR>&nbsp;2000&nbsp;&nbsp;0.240&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.030<=
+BR>&nbsp;3000&nbsp;&nbsp;0.550&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.050<BR>&nbs=
+p;4000&nbsp;&nbsp;0.950&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.060<BR>&nbsp;5000&=
+nbsp;&nbsp;1.450&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.080<BR>&nbsp;6000&nbsp;&n=
+bsp;2.080&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.090<BR>&nbsp;7000&nbsp;&nbsp;2.9=
+90&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.110<BR>&nbsp;8000&nbsp;&nbsp;3.700&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;0.130<BR>&nbsp;9000&nbsp;&nbsp;4.700&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;0.140<BR>10000&nbsp;&nbsp;6.330&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;0.160<BR>11000&nbsp;&nbsp;7.350&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.170<=
+BR>20000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;0.290<BR>40000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;0.570<BR>60000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.910<BR>80000&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.290<BR>100000&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.220<BR></FONT></T=
+T>
+<P>Marcin Mika points out that you can simplify this algorithm to this =
+tiny=20
+little solution: <PRE>#include &lt;stdio.h&gt;
+#define SIZE 200000
+#define MAX(x,y) ((x)&gt;(y)?(x):(y))
+
+int     best[SIZE];        // best[] holds values of the optimal =
+sub-sequence
+
+int=20
+main (void) {
+    FILE *in  =3D fopen ("input.txt", "r");
+    FILE *out =3D fopen ("output.txt", "w");
+    int     i, n, k, x, sol =3D -1;
+
+    fscanf (in, "%d", &amp;n);	// N =3D how many integers to read in
+    for (i =3D 0; i &lt; n; i++) {
+	best[i] =3D -1;
+	fscanf (in, "%d", &amp;x);
+	for (k =3D 0; best[k] &gt; x; k++)
+	    ;
+	best[k] =3D x;
+	sol =3D MAX (sol, k + 1);
+    }
+    printf ("best is %d\n", sol);
+    return 0;
+}
+</PRE>
+<P><I>Not to be outdone, Tyler Lu points out the program below.</I> The=20
+solutions above use a linear search to find the appropriate location in =
+the=20
+'bestrun' array to insert an integer. However, because the auxiliary =
+array is=20
+sorted, using binary search will make it run even faster, decreasing the =
+runtime=20
+to O(N log N). <PRE>#include &lt;stdio.h&gt;
+#define SIZE 200000
+#define MAX(x,y) ((x)&gt;(y)?(x):(y))
+
+int     best[SIZE];        // best[] holds values of the optimal =
+sub-sequence
+
+int
+main (void) {
+    FILE *in  =3D fopen ("input.txt", "r");
+    int i, n, k, x, sol;
+    int low, high;
+
+    fscanf (in, "%d", &amp;n);	// N =3D how many integers to read in
+    // read in the first integer
+    fscanf (in, "%d", &amp;best[0]);
+    sol =3D 1;
+    for (i =3D 1; i &lt; n; i++) {
+        best[i] =3D -1;
+    	  fscanf (in, "%d", &amp;x);
+
+        if(x &gt;=3D best[0]) {
+          k =3D 0;
+          best[0] =3D x;
+        }
+        else {
+          // use binary search instead
+          low =3D 0;
+          high =3D sol-1;
+          for(;;) {
+            k =3D (int) (low + high) / 2;
+            // go lower in the array
+            if(x &gt; best[k] &amp;&amp; x &gt; best[k-1]) {
+              high =3D k - 1;
+              continue;
+            }
+            // go higher in the array
+            if(x &lt; best[k] &amp;&amp; x &lt; best[k+1]) {
+              low =3D k + 1;
+              continue;
+            }
+            // check if right spot
+            if(x &gt; best[k] &amp;&amp; x &lt; best[k-1])
+              best[k] =3D x;
+            if(x &lt; best[k] &amp;&amp; x &gt; best[k+1])
+              best[++k] =3D x;
+            break;
+          }
+        }
+	      sol =3D MAX (sol, k + 1);
+    }
+    printf ("best is %d\n", sol);
+    fclose(in);
+    return 0;
+}
+</PRE>
+<H4>Summary</H4>
+<P>These programs demonstrate the main concept behind dynamic =
+programming: build=20
+larger solutions based on previously found solutions. This building-up =
+of=20
+solutions often yields programs that run very quickly.=20
+<P>For the previous programming challenge, the main subproblem was: Find =
+the=20
+largest decreasing subsequence (and its first value) for numbers to the =
+`right'=20
+of a given element.=20
+<P>Note that this sort of approach solves a class of problems that might =
+be=20
+denoted ``one-dimensional''.=20
+<H4>Two Dimensional DP</H4>
+<P>It is possible to create higher dimension problems such as:=20
+<P>Given two sequences of integers, what is the longest sequence which =
+is a=20
+subsequence of both sequences?=20
+<P>Here, the subproblems are the longest common subsequence of smaller =
+sequences=20
+(where the sequences are the tails of the original subsequences). First, =
+if one=20
+of the sequences contains only one element, the solution is trivial =
+(either the=20
+element is in the other sequence or it isn't).=20
+<P>Look at the problem of finding the longest common subsequence of the =
+last i=20
+elements of the first sequence and the last j elements of the second =
+sequences.=20
+There are only two possibilities. The first element of the first tail =
+might be=20
+in the longest common subsequence or it might not. The longest common =
+sequence=20
+not containing the first element of the first tail is merely the longest =
+common=20
+subsequence of the last i-1 elements of the first sequence and the last =
+j=20
+elements of the second subsequence. The other possibility results from =
+some=20
+element in the tail of the second sequence matching the first element in =
+tail of=20
+the first, and finding the longest common subsequence of the elements =
+after=20
+those matched elements. <BR><IMG=20
+src=3D"http://ace.delos.com/usaco/TEXT/dp1.gif"><BR>
+<H5>Pseudocode</H5>
+<P>Here's the pseudocode for this algorithm: <BR><TT><FONT=20
+size=3D2><BR>&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;the&nbsp;tail&nbsp;of&nbsp;th=
+e&nbsp;second&nbsp;sequence&nbsp;is&nbsp;empty<BR>&nbsp;1&nbsp;&nbsp;&nbs=
+p;for&nbsp;element&nbsp;=3D&nbsp;1&nbsp;to&nbsp;length1<BR>&nbsp;2&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;length[element,&nbsp;length2+1]&nbsp;=3D&nbsp;0<BR=
+><BR><BR>&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;the&nbsp;tail&nbsp;of&nbsp;the&nb=
+sp;first&nbsp;sequence&nbsp;has&nbsp;one&nbsp;element<BR>&nbsp;3&nbsp;&nb=
+sp;&nbsp;matchelem&nbsp;=3D&nbsp;0<BR>&nbsp;4&nbsp;&nbsp;&nbsp;for&nbsp;e=
+lement&nbsp;=3D&nbsp;length2&nbsp;to&nbsp;1<BR>&nbsp;5&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;if&nbsp;list1[length1]&nbsp;=3D&nbsp;list2[element]<BR>&nbsp;6=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;matchelem&nbsp;=3D&nbsp;1<BR>&n=
+bsp;7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;length[length1,element]=20
+=3D nmatchlen=20
+<BR><BR>&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;loop&nbsp;over&nbsp;the&nbsp;begin=
+ning&nbsp;of&nbsp;the&nbsp;tail&nbsp;of&nbsp;the&nbsp;first&nbsp;sequence=
+<BR>&nbsp;8&nbsp;&nbsp;&nbsp;for&nbsp;loc&nbsp;=3D&nbsp;length1-1&nbsp;to=
+&nbsp;1<BR>&nbsp;9&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;maxlen&nbsp;=3D&nbsp;0<BR=
+>10&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;element&nbsp;=3D&nbsp;length2&n=
+bsp;to&nbsp;1<BR>&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;longest&nbsp;common&nbsp;=
+subsequence&nbsp;doesn't&nbsp;include&nbsp;first&nbsp;element<BR>11&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;length[loc+1,element]&nbsp;&g=
+t;&nbsp;maxlen<BR>12&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;maxlen&nbsp;=3D&nbsp;length[loc+1,element]<BR>&nbsp;&nbsp;&nbsp;&nbsp;#&=
+nbsp;longest&nbsp;common&nbsp;subsequence&nbsp;includes&nbsp;first&nbsp;e=
+lement<BR>13&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;list1[loc]&=
+nbsp;=3D&nbsp;list2[element]&nbsp;&amp;&amp;<BR>14&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;length[loc+1,element+1]+1&nbsp;=
+&gt;&nbsp;maxlen<BR>15&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;maxlen&nbsp;=3D&nbsp;length[loc,element+1]&nbsp;+&nbsp;1<B=
+R>16&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;length[loc,element]&nbsp;=3D=
+&nbsp;maxlen<BR></FONT></TT>
+<P>This program runs in O(<I>N</I> x <I>M</I>) time, where <I>N</I> and =
+<I>M</I>=20
+are the respectively lengths of the sequences.=20
+<P>Note that this algorithm does not directly calculate the longest =
+common=20
+subsequence. However, given the length matrix, you can determine the =
+subsequence=20
+fairly quickly: <BR><TT><FONT=20
+size=3D2><BR>&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;location1&nbsp;=3D&nbsp;1<BR>=
+&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;location2&nbsp;=3D&nbsp;1<BR><BR><BR>&nbsp=
+;3&nbsp;&nbsp;&nbsp;&nbsp;while&nbsp;(length[location1,location2]&nbsp;!=3D=
+&nbsp;0)<BR>&nbsp;4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;flag&nbsp;=3D&nbsp=
+;False<BR>&nbsp;5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;element&nbs=
+p;=3D&nbsp;location2&nbsp;to&nbsp;length2<BR>&nbsp;6&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(list1[location1]&nbsp;=3D&nbsp;list2[=
+element]&nbsp;AND<BR>&nbsp;7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;length[location1+1,element+1]+1&nbsp;=3D&nbsp;length=
+[location1,location2]<BR>&nbsp;8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;output&nbsp;(list1[location1],list2[element])<BR>&nbsp=
+;9&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;location2&n=
+bsp;=3D&nbsp;element&nbsp;+&nbsp;1<BR>10&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;flag&nbsp;=3D&nbsp;True<BR>11&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break&nbsp;for<BR>12&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;location1&nbsp;=3D&nbsp;location1&n=
+bsp;+&nbsp;1<BR></FONT></TT>
+<P>The trick to dynamic programming is finding the subproblems to solve. =
+
+Sometimes it involves multiple parameters:=20
+<P>A bitonic sequence is a sequence which increases for the first part =
+and=20
+decreases for the second part. Find the longest bitonic sequence of a =
+sequence=20
+of integers (technically, a bitonic can either increase-then-decrease or =
+
+decrease-then-increase, but for this problem, only increase and then =
+decrease=20
+will be considered).=20
+<P>In this case, the subproblems are the longest bitonic sequence and =
+the=20
+longest decreasing sequence of prefixes of the sequence (basically, =
+what's=20
+longest sequence assuming the turn has not occurred yet, and what's =
+longest=20
+sequence starting here assuming the turn has already occurred).=20
+<P>Sometimes the subproblems are well hidden:=20
+<P>You have just won a contest where the prize is a free vacation in =
+Canada. You=20
+must travel via air, and the cities are ordered from east to west. In =
+addition,=20
+according to the rules, you must start at the further city west, travel =
+only=20
+east until you reach the furthest city east, and then fly only west =
+until you=20
+reach your starting location. In addition, you may visit no city more =
+than once=20
+(except the starting city, of course).=20
+<P>Given the order of the cities, with the flights that can be done (you =
+can=20
+only fly between certain cities, and just because you can fly from city =
+A to=20
+city B does not mean you can fly the other direction), calculate the =
+maximum=20
+number of cities you can visit.=20
+<P>The obvious item to try to do dynamic programming on is your location =
+and=20
+your direction, but it's important what path you've taken (since you =
+can't=20
+revisit cities on the return trip), and the number of paths is too large =
+to be=20
+able to solve (and store) the result of doing all of those subproblems.=20
+<P>However, if, instead of trying to find the path as described, it is =
+found a=20
+different manner, then the number of states greatly decreases. Imagine =
+having=20
+two travelers who start in the western most city. The travelers take =
+turns=20
+traveling east, where the next traveler to move is always the =
+western-most, but=20
+the travelers may never be at the same city, unless it is either the =
+first or=20
+the last city. However, one of the traveler is only allowed to make =
+"reverse=20
+flights," where he can travel from city A to city B if and only if there =
+is a=20
+flight from city <B>B</B> to city <B>A</B>.=20
+<P>It's not too difficult to see that the paths of the two travelers can =
+be=20
+combined to create a round-trip, by taking the normal traveler's path to =
+the=20
+eastern-most city, and then taking the reverse of the other traveler's =
+path back=20
+to the western-most city. Also, when traveler x is moved, you know that =
+the=20
+traveler y has not yet visited any city east of traveler x except the =
+city=20
+traveler y is current at, as otherwise traveler y must have moved once =
+while x=20
+was west of y. Thus, the two traveler's paths are disjoint. Why this =
+algorithm=20
+might yield the maximum number of cities is left as an exercise.=20
+<H4>Recognizing Problems solvable by dynamic programming</H4>
+<P>Generally, dynamic programming solutions are applied to those =
+solutions which=20
+would otherwise be exponential in time, so if the bounds of the problem =
+are too=20
+large to be able to be done in exponential time for any but a very small =
+set of=20
+the input cases, look for a dynamic programming solution. Basically, any =
+program=20
+you were thinking about doing recursive descent on, you should check to =
+see if a=20
+dynamic programming solution exists if the inputs limits are over 30.=20
+<H4>Finding the Subproblems</H4>
+<P>As mentioned before, finding the subproblems to do dynamic =
+programming over=20
+is the key. Your goal is to completely describe the state of a solution =
+in a=20
+small amount of data, such as an integer, a pair of integers, a boolean =
+and an=20
+integer, etc.=20
+<P>Almost without fail, the subproblem will be the `tail-end' of a =
+problem. That=20
+is, there is a way to do the recursive descent such that at each step, =
+you only=20
+pass a small amount of data. For example, in the air travel one, you =
+could do=20
+recursive descent to find the complete path, but that means you'd have =
+to pass=20
+not only your location, but the cities you've visited already (either as =
+a list=20
+or as a boolean array). That's too much state for dynamic programming to =
+work=20
+on. However, recursing on the pair of cities as you travel east subject =
+to the=20
+constant given is a very small amount of data to recurse on.=20
+<P>If the path is important, you will not be able to do dynamic =
+programming=20
+unless the paths are <B>very</B> short. However, as in the air travel =
+problem,=20
+depending on how you look at it, the path may not be important.=20
+<H4>Sample Problems</H4>
+<H5></H5>Polygon Game [1998 IOI]
+<H5></H5>
+<P>Imagine a regular N-gon. Put numbers on nodes, either and the =
+operators `+'=20
+or `*' on the edges. The first move is to remove an edge. After that, =
+combine=20
+(e.g., evaluate the simple term) across edges, replacing the edge and =
+end points=20
+with node with value equal to value of end point combined by operations, =
+for=20
+example: <BR><TT><FONT=20
+size=3D2><BR>&nbsp;&nbsp;...--&nbsp;3&nbsp;--+--&nbsp;5&nbsp;--*--&nbsp;7=
+&nbsp;--...<BR>&nbsp;&nbsp;...-----&nbsp;8&nbsp;----*-----&nbsp;7&nbsp;--=
+...<BR>&nbsp;&nbsp;...--------&nbsp;56&nbsp;-----------...<BR></FONT></TT=
+>Given=20
+a labelled N-gon, maximize the final value computed.=20
+<H5>Subset Sums [Spring 98 USACO]</H5>
+<P>For many sets of consecutive integers from 1 through N (1 &lt;=3D N =
+&lt;=3D 39),=20
+one can partition the set into two sets whose sums are identical. For =
+example,=20
+if N=3D3, one can partition the set {1, 2, 3} in one way so that the =
+sums of both=20
+subsets are identical:=20
+<CENTER>{3} and {1,2} </CENTER>This counts as a single partitioning =
+(i.e.,=20
+reversing the order counts as the same partitioning and thus does not =
+increase=20
+the count of partitions).=20
+<P>If N=3D7, there are 4 ways to partition the set {1, 2, 3, ... 7} so =
+that each=20
+partition has the same sum:=20
+<CENTER>{1,6,7} and {2,3,4,5} </CENTER>
+<CENTER>{2,5,7} and {1,3,4,6} </CENTER>
+<CENTER>{3,4,7} and {1,2,5,6} </CENTER>
+<CENTER>{1,2,4,7} and {3,5,6} </CENTER>
+<P>Given N, your program should print the number of ways a set =
+containing the=20
+integers from 1 through N can be partitioned into two sets whose sums =
+are=20
+identical. Print 0 if there are no such ways.=20
+<H5>Number Game [IOI 96, maybe]</H5>
+<P>Given a sequence of no more than 100 integers (-32000..32000), two =
+opponents=20
+alternate turns removing the leftmost or rightmost number from a =
+sequence. Each=20
+player's score at the end of the game is the sum of those numbers he or =
+she=20
+removed. Given a sequence, determine the maximum winning score for the =
+first=20
+player, assuming the second player plays optimally. </P></DIV><BR>
+<CENTER><A href=3D"http://ace.delos.com/usacogate?a=3DO5yNx64mY80">USACO =
+Gateway</A>=20
+| <A href=3D"mailto:kolstad@ace.delos.com">Comment or Question</A>=20
+</CENTER></FONT></BODY></HTML>
+
+------=_NextPart_000_0016_01CA8747.5BC81EF0
+Content-Type: image/gif
+Content-Transfer-Encoding: base64
+Content-Location: http://ace.delos.com/usaco/cowhead2.gif
+
+R0lGODlhQQBRAPYAAP///wgICBAQEBgYGM7Ozvfv7//39/8AALWEa4RSAP/3nP/vABAQGAgIEL21
+xjkxQtbO3s7G1rWtvTEpOSkhMca9zkI5SiEYKVpKY2NSa1JCWko5UoxzlHNae2tSc5x7pbWUva2M
+taWErb2UxpRznPfO/9at3saczt6t57WMvffG/9al3v/3/87GztbO1t7W3ufe5721va2lrbWttca9
+xpSMlJyUnKWcpf/v/9bG1r2tvc69zrWltf/n///e/zkxOTEpMf/W/1pKWoRrhK2MrSkhKVJCUntj
+e//O/86lzvfG96WEpZx7nHNac72Uvee155RzlLWMtUo5SmtSa4xrjK2ErYRjhGNKY0IxQqV7pVpC
+WntaeyEYITkpOVI5UjEhMRgQGCkYKRAIEAgACPe97wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5
+BAEAAAcALAAAAABBAFEAAAf+gAeCg4SFhoeIiYJlio2Oj5AHZZOTkZaXiJRlCQmbnZigkZqdm56k
+oZiaqpScrZ2cpqWol5Otpq62sLaejLOirre4pby3vb6PsbjAr7rCx5DByrmkypXPjbXM0snb147R
+1dPd3orgy9LO5Inm6O2f6ofs2u6w8Jnt8sLG9oPs+cD7+C1C9w+WLIH9CNKbFpBfMV4L5zWEp4mA
+RQKq8KXztqrMxY8gMWajN5EWpQUoUy6oGBLkv5LQyqicSXNSy48jx6WSmXISSp4ra3q8iZGkyZ4/
+eQJVOtPmTXkw4zVN+hNp0JVLifoTVbXrVaVMv/58ai5qIbBUv8r0Kfbqyqf++KBZbeuz7tqwa1vm
+BCbXK967dP3q1Wftm8qwNBN3XTvW5bl3hucmXlVz8VCcBJEpTjoJgOfPnk9azeuYVKy+PSmBLgO6
+NQC2gnEW1oQa6+pJCjp/1hTaK1aXvu5i3K2guHHWuI8jB9oT+CxKFlm/Pm48d/Xq0plzpnTsMnLl
+Za7nTp5799TDMQv30wQ+/HVK2M1vXolNeuiJ8MeTL67KeGvtWPWUiX3/dfRaeOxhlyCByKUW3U/x
+7BYAGGE0oNt/uyXYHoKudTTUWoboFoQKJJJ4m2oF9reKayweSNtZAJQoIxC8oZihjCXy1mKHLKoX
+AI4qBFEGjjpSAqSMF+7+6CKSDC4So4xIDHmkCkZOieOBSt43CZH3CQIGjl9aKeaRy2V5IJVAIrcI
+Fk++RqKUY74J55VYtrjllkeGtogmcaYpJoFKloEFmmm+FqKcc06pCplmgmalmmdRWeWjqxTaqKOF
+NjTkopRyimSWOn7GJQCHSpqoopN+uluH2QH6JKSEnNrnn6v1uCKrpc7aJ4Ydhqgbd7nqSuuqPaIi
+q7B01tnrc8g+et+OZn3T7JTK4trdtES6mqGhz+DZbJIF7kZOqmOCy+uB6ix3LKKB2gcsRyfCaaOd
+gL57jbYuNgrui+Oae6m2/FLkL722qifQvD1Cay9CkiCsisLRClxkqCc9MhwhqwivZrGvGGcs7sax
+FpzkhRGnKzKD7oIMI8bx6qlyP/p6+DLMoKoy81n4LnxziCnuDI2WPotisDqBAAA7
+
+------=_NextPart_000_0016_01CA8747.5BC81EF0
+Content-Type: image/gif
+Content-Transfer-Encoding: base64
+Content-Location: http://ace.delos.com/usaco/TEXT/dp1.gif
+
+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
+
+------=_NextPart_000_0016_01CA8747.5BC81EF0--

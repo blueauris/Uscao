@@ -1,0 +1,799 @@
+From: <ÓÉ Microsoft Internet Explorer 5 ±£´æ>
+Subject: Graph Theory
+Date: Fri, 23 Jan 2009 17:03:34 +0800
+MIME-Version: 1.0
+Content-Type: multipart/related;
+	type="text/html";
+	boundary="----=_NextPart_000_0000_01C97D7C.8677BAA0"
+X-MimeOLE: Produced By Microsoft MimeOLE V6.00.2900.3350
+
+This is a multi-part message in MIME format.
+
+------=_NextPart_000_0000_01C97D7C.8677BAA0
+Content-Type: text/html;
+	charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+Content-Location: http://ace.delos.com/usacotext2?a=plV61TMMIka&S=graph
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>Graph Theory</TITLE>
+<META http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Diso-8859-1">
+<META content=3D"MSHTML 6.00.2900.3492" name=3DGENERATOR></HEAD>
+<BODY bgColor=3D#f0f0f0><FONT=20
+face=3D"Verdana,Tahoma,sans-serif,Arial,Lucida Sans,Gill Sans">
+<DIV=20
+style=3D"BORDER-RIGHT: 1px solid; PADDING-RIGHT: 1em; BORDER-TOP: 1px =
+solid; PADDING-LEFT: 1em; PADDING-BOTTOM: 1em; BORDER-LEFT: 1px solid; =
+WIDTH: 45em; PADDING-TOP: 1em; BORDER-BOTTOM: 1px solid; =
+BACKGROUND-COLOR: white">
+<TABLE cellSpacing=3D8>
+  <TBODY>
+  <TR>
+    <TD><IMG src=3D"http://ace.delos.com/usaco/cowhead2.gif"></TD>
+    <TD>&nbsp;&nbsp;&nbsp;</TD>
+    <TD><B><FONT size=3D5><FONT=20
+      face=3D"Verdana,Tahoma,sans-serif,Arial,Lucida Sans,Gill =
+Sans">Graph Theory=20
+      </FONT></B></FONT></TD></TR></TBODY></TABLE>
+<H4>What's a Graph?</H4>
+<P>Formally, a <I>graph</I> is the following:=20
+<UL>
+  <LI>a collection of <I>vertices</I> V, and=20
+  <LI>a collection of <I>edges</I> E consisting of pairs of vertices. =
+</LI></UL>
+<P>Think of vertices as ``locations''. The set of vertices is the set of =
+all the=20
+possible locations. In this analogy, edges represent paths between pairs =
+of=20
+those locations; the set E contains all the paths between the locations. =
+
+<H4>Representation</H4>
+<P>The graph is normally represented using that analogy. Vertices are =
+points or=20
+circles; edges are lines between them. <BR><IMG=20
+src=3D"http://ace.delos.com/usaco/TEXT/graph1.gif"><BR>
+<P>In this example graph, V =3D {1, 2, 3, 4, 5, 6} and E =3D {(1,3), =
+(1,6), (2,5),=20
+(3,4), (3,6)}.=20
+<P>Each <I>vertex</I> is a member of the set V. A vertex is sometimes =
+called a=20
+<I>node</I>.=20
+<P>Each <I>edge</I> is a member of the set E. Note that some vertices =
+might not=20
+be the end point of any edge. Such vertices are termed `isolated'.=20
+<P>Sometimes, numerical values are associated with edges, specifying =
+lengths or=20
+costs; such graphs are called <I>edge-weighted</I> graphs (or weighted =
+graphs).=20
+The value associated with an edge is called the <I>weight</I> of the =
+edge. A=20
+similar definition holds for node-weighted graphs,=20
+<H4>Examples of Graphs</H4>
+<H5>Telecowmunication (USACO Championship 1996)</H5>
+<P>Given a set of computers and a set of wires running between pairs of=20
+computers, what is the minimum number of machines whose crash causes two =
+given=20
+machines to be unable to communicate? (The two given machines will not =
+crash.)=20
+<P>Graph: The vertices of the graph are the computers. The edges are the =
+wires=20
+between the computers.=20
+<H5>Sample Problem: Riding The Fences</H5>
+<P>Farmer John owns a large number of fences, which he must periodically =
+check=20
+for integrity. He keeps track of his fences by maintaining a list of =
+points at=20
+which fences intersect. He records the name of the point and the one or =
+two=20
+fence names that touch that point. Every fence has two end points, each =
+at some=20
+intersection point, although the intersection point may be the end point =
+of only=20
+one fence.=20
+<P>Given a fence layout, calculate if there is a way for Farmer John to =
+ride his=20
+horse to all of his fences without riding along a fence more than once. =
+Farmer=20
+John can start and finish anywhere, but cannot cut across his fields =
+(i.e., the=20
+only way he can travel between intersection points is along a fence). If =
+there=20
+is a way, find one way.=20
+<P>Graph: Farmer John starts at intersection points and travels between =
+the=20
+points along fences. Thus, the vertices of the underlying graph are the=20
+intersection points, and the fences represent edges.=20
+<H5>Knight moves</H5>
+<P>Given: Two squares on an 8x8 chessboard. Determine the shortest =
+sequence of=20
+knight moves from one square to the other.=20
+<P>Graph: The graph here is harder to see. Each location on the =
+chessboard=20
+represents a vertex. There is an edge between two positions if it is a =
+legal=20
+knight move.=20
+<H5>Overfencing [Kolstad &amp; Schrijvers, Spring 1999 USACO Open]</H5>
+<P>Farmer John created a huge maze of fences in a field. He omitted two =
+fence=20
+segments on the edges, thus creating two ``exits'' for the maze. The =
+maze is a=20
+`perfect' maze; you can find a way out of the maze from any point inside =
+it.=20
+<P>Given the layout of the maze, calculate the number of steps required =
+to exit=20
+the maze from the `worst' point in the maze (the point that is `farther' =
+from=20
+either exit when walking optimally to the closest exit).=20
+<P>Here's what one particular W=3D5, H=3D3 maze looks like: =
+<BR><TT><FONT=20
+size=3D2><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+-+-+-+-+-+<BR>&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<B=
+R>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+-+&nbsp;+-+&nbsp;+&nbsp;+<BR>&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;|&nbsp;|<BR>&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;+&nbsp;+-+-+&nbsp;+&nbsp;+<BR>&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;|&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;<BR>&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;+-+&nbsp;+-+-+-+<BR></FONT></TT>
+<P>Graph: The vertices of the graph are positions in the grid. There is =
+an edge=20
+between two vertices if they represent adjacent positions that are not =
+separated=20
+by a wall.=20
+<H4>Terminology</H4>Let's look again at the first example graph: =
+<BR><IMG=20
+src=3D"http://ace.delos.com/usaco/TEXT/graph1.gif"><BR>
+<P>An edge is a <I>self-loop</I> if it is of the form (u,u). The sample =
+graph=20
+contains no self-loops.=20
+<P>A graph is <I>simple</I> if it neither contains self-loops nor =
+contains an=20
+edge that is repeated in E. A graph is called a <I>multigraph</I> if it =
+contains=20
+a given edge more than once or contain self-loops. For our discussions, =
+graphs=20
+are assumed to be simple. The example graph is a simple graph.=20
+<P>An edge (u,v) is <I>incident</I> to both vertex u and vertex v. For =
+example,=20
+the edge (1,3) is incident to vertex 3.=20
+<P>The <I>degree</I> of a vertex is the number of edges which are =
+incident to=20
+it. For example, vertex 3 has degree 3, while vertex 4 has degree 1.=20
+<P>Vertex u is <I>adjacent</I> to vertex v if there is some edge to =
+which both=20
+are incident (that is, there is an edge between them). For example, =
+vertex 2 is=20
+adjacent to vertex 5.=20
+<P>A graph is said to be <I>sparse</I> if the total number of edges is =
+small=20
+compared to the total number possible ((<I>N x (N-1))/2</I>) and =
+<I>dense</I>=20
+otherwise. For a given graph, whether it is dense or sparse is not =
+well-defined.=20
+
+<H4>Directed Graph</H4>
+<P>Graphs described thus far are called <I>undirected</I>, as the edges =
+go `both=20
+ways'. So far, the graphs have connoted that if one can travel from =
+vertex 1 to=20
+vertex 3, one can also travel from vertex 3 to vertex 1. In other words, =
+(1,3)=20
+being in the edge set implies (3,1) is in the edge set.=20
+<P>Sometimes, however, a graph is <I>directed</I>, in which case the =
+edges have=20
+a direction. In this case, the edges are called <I>arcs</I>.=20
+<P>Directed graphs are drawn with arrows to show direction. <BR><IMG=20
+src=3D"http://ace.delos.com/usaco/TEXT/graph2.gif"><BR>
+<P>The <I>out-degree</I> of a vertex is the number of arcs which =
+<I>begin</I> at=20
+that vertex. The <I>in-degree</I> of a vertex is the number of arcs =
+which=20
+<I>end</I> at that vertex. For example, vertex 6 has in-degree 2 and =
+out-degree=20
+1.=20
+<P>A graph is assumed to be undirected unless specifically called a =
+directed=20
+graph.=20
+<H4>Paths</H4>
+<P>A <I>path</I> from vertex <I>u</I> to vertex <I>x</I> is a sequence =
+of=20
+vertices (<I>v <SUB>0</SUB></I>, <I>v <SUB>1</SUB></I>, ..., <I>v=20
+<SUB>k</SUB></I>) such that <I>v <SUB>0</SUB></I> =3D <I>u</I> and <I>v=20
+<SUB>k</SUB></I> =3D <I>x</I> and (<I>v <SUB>0</SUB></I>, <I>v =
+<SUB>1</SUB></I>)=20
+is an edge in the graph, as is (<I>v <SUB>1</SUB></I>, <I>v =
+<SUB>2</SUB></I>),=20
+(<I>v <SUB>2</SUB></I>, <I>v <SUB>3</SUB></I>), etc. The length of such =
+a path=20
+is <I>k</I>.=20
+<P>For example, in the undirected graph above, (4, 3, 1, 6) is a path. =
+<BR><IMG=20
+src=3D"http://ace.delos.com/usaco/TEXT/graph3.gif"><BR>
+<P>This path is said to <I>contain</I> the vertices <I>v =
+<SUB>0</SUB></I>, <I>v=20
+<SUB>1</SUB></I>, etc., as well as the edges (<I>v <SUB>0</SUB></I>, =
+<I>v=20
+<SUB>1</SUB></I>), (<I>v <SUB>1</SUB></I>, <I>v <SUB>2</SUB></I>), etc.=20
+<P>Vertex <I>x</I> is said to be <I>reachable</I> from vertex <I>u</I> =
+if a path=20
+exists from <I>u</I> to <I>x</I>.=20
+<P>A path is <I>simple</I> if it contains no vertex more than once.=20
+<P>A path is a <I>cycle</I> if it is a path from some vertex to that =
+same=20
+vertex. A cycle is <I>simple</I> if it contains no vertex more than =
+once, except=20
+the start (and end) vertex, which only appears as the first and last =
+vertex in=20
+the path.=20
+<P>These definitions extend similarly to directed graphs (e.g., (<I>v=20
+<SUB>0</SUB></I>, <I>v <SUB>1</SUB></I>), (<I>v <SUB>1</SUB></I>, <I>v=20
+<SUB>2</SUB></I>), etc. must be arcs).=20
+<H4>Graph Representation</H4>
+<P>The choice of representation of a graph is important, as different=20
+representations have very different time and space costs.=20
+<P>The vertices are generally tracked by numbering them, so that one can =
+index=20
+them just by their number. Thus, the representations focus on how to =
+store the=20
+<I>edges</I>.=20
+<H5>Edge List</H5>
+<P>The most obvious way to keep track of the edges is to keep a list of =
+the=20
+pairs of vertices representing the edges in the graph.=20
+<P>This representation is easy to code, fairly easy to debug, and fairly =
+space=20
+efficient. However, determining the edges incident to a given vertex is=20
+expensive, as is determining if two vertices are adjacent. Adding an =
+edge is=20
+quick, but deleting one is difficult if its location in the list is not =
+known.=20
+<P>For weighted graphs, this representation also keeps one more number =
+for each=20
+edge, the edge weight. Extending this data structure to handle directed =
+graphs=20
+is straightforward. Representing multigraphs is also trivial.=20
+<H5>Example</H5>The sample undirected graph might be represented as the=20
+following list of edges:=20
+<CENTER>
+<TABLE border=3D1>
+  <TBODY>
+  <TR>
+    <TD>&nbsp; </TD>
+    <TD><I>V<SUB>1</SUB></I></TD>
+    <TD><I>V<SUB>2</SUB></I></TD></TR>
+  <TR>
+    <TD><I>e<SUB>1</SUB></I></TD>
+    <TD>4</TD>
+    <TD>3</TD>
+  <TR>
+    <TD><I>e<SUB>2</SUB></I></TD>
+    <TD>1</TD>
+    <TD>3</TD>
+  <TR>
+    <TD><I>e<SUB>3</SUB></I></TD>
+    <TD>2</TD>
+    <TD>5</TD>
+  <TR>
+    <TD><I>e<SUB>4</SUB></I></TD>
+    <TD>6</TD>
+    <TD>1</TD>
+  <TR>
+    <TD><I>e<SUB>5</SUB></I></TD>
+    <TD>3</TD>
+    <TD>6</TD></TR></TBODY></TABLE></CENTER>
+<H5>Adjacency Matrix</H5>
+<P>A second way to represent a graph utilizes an <I>adjacency =
+matrix</I>. This=20
+is a N by N array (N is the number of vertices). The i,j entry contains =
+a 1 if=20
+the edge (i,j) is in the graph; otherwise it contains a 0. For an =
+undirected=20
+graph, this matrix is symmetric.=20
+<P>This representation is easy to code. It's much less space efficient,=20
+especially for large, sparse graphs. Debugging is harder, as the matrix =
+is=20
+large. Finding all the edges incident to a given vertex is fairly =
+expensive=20
+(linear in the number of vertices), but checking if two vertices are =
+adjacent is=20
+very quick. Adding and removing edges are also very inexpensive =
+operations.=20
+<P>For weighted graphs, the value of the (i,j) entry is used to store =
+the weight=20
+of the edge. For an unweighted multigraph, the (i,j) entry can maintain =
+the=20
+number of edges between the vertices. For a weighted multigraph, it's =
+harder to=20
+extend this.=20
+<H5>Example</H5>
+<P>The sample undirected graph would be represented by the following =
+adjacency=20
+matrix:=20
+<CENTER>
+<TABLE border=3D1>
+  <TBODY>
+  <TR>
+    <TD>&nbsp;</TD>
+    <TD><I>V<SUB>1</SUB></I></TD>
+    <TD><I>V<SUB>2</SUB></I></TD>
+    <TD><I>V<SUB>3</SUB></I></TD>
+    <TD><I>V<SUB>4</SUB></I></TD>
+    <TD><I>V<SUB>5</SUB></I></TD>
+    <TD><I>V<SUB>6</SUB></I></TD>
+  <TR>
+  <TR>
+    <TD align=3Dmiddle><I>V<SUB>1</SUB></I></TD>
+    <TD align=3Dmiddle>0</TD>
+    <TD align=3Dmiddle>0</TD>
+    <TD align=3Dmiddle>1</TD>
+    <TD align=3Dmiddle>0</TD>
+    <TD align=3Dmiddle>0</TD>
+    <TD align=3Dmiddle>1</TD>
+  <TR>
+  <TR>
+    <TD align=3Dmiddle><I>V<SUB>2</SUB></I></TD>
+    <TD align=3Dmiddle>0</TD>
+    <TD align=3Dmiddle>0</TD>
+    <TD align=3Dmiddle>0</TD>
+    <TD align=3Dmiddle>0</TD>
+    <TD align=3Dmiddle>1</TD>
+    <TD align=3Dmiddle>0</TD>
+  <TR>
+  <TR>
+    <TD align=3Dmiddle><I>V<SUB>3</SUB></I></TD>
+    <TD align=3Dmiddle>1</TD>
+    <TD align=3Dmiddle>0</TD>
+    <TD align=3Dmiddle>0</TD>
+    <TD align=3Dmiddle>1</TD>
+    <TD align=3Dmiddle>0</TD>
+    <TD align=3Dmiddle>1</TD>
+  <TR>
+  <TR>
+    <TD align=3Dmiddle><I>V<SUB>4</SUB></I></TD>
+    <TD align=3Dmiddle>0</TD>
+    <TD align=3Dmiddle>0</TD>
+    <TD align=3Dmiddle>1</TD>
+    <TD align=3Dmiddle>0</TD>
+    <TD align=3Dmiddle>0</TD>
+    <TD align=3Dmiddle>0</TD>
+  <TR>
+  <TR>
+    <TD align=3Dmiddle><I>V<SUB>5</SUB></I></TD>
+    <TD align=3Dmiddle>0</TD>
+    <TD align=3Dmiddle>1</TD>
+    <TD align=3Dmiddle>0</TD>
+    <TD align=3Dmiddle>0</TD>
+    <TD align=3Dmiddle>0</TD>
+    <TD align=3Dmiddle>0</TD>
+  <TR>
+  <TR>
+    <TD align=3Dmiddle><I>V<SUB>6</SUB></I></TD>
+    <TD align=3Dmiddle>1</TD>
+    <TD align=3Dmiddle>0</TD>
+    <TD align=3Dmiddle>1</TD>
+    <TD align=3Dmiddle>0</TD>
+    <TD align=3Dmiddle>0</TD>
+    <TD align=3Dmiddle>0</TD>
+  <TR></TR></TBODY></TABLE></CENTER>
+<P>It is sometimes helpful to use the fact that the (i,j) entry of the =
+adjacency=20
+matrix raised to the k-th power gives the number of paths from vertex i =
+to=20
+vertex j consisting of exactly k edges.=20
+<H5>Adjacency List</H5>
+<P>The third representation of graph is to keep track of all the edges =
+incident=20
+to a given vertex. This can be done by using an array of length N, where =
+N is=20
+the number of vertices. The i<SUP>th</SUP> entry in this array is a list =
+of the=20
+edges incident to i'th vertex (edges are represented by the index of the =
+other=20
+vertex incident to that edge).=20
+<P>This representation is much more difficult to code, especially if the =
+number=20
+of edges incident to each vertex is not bounded, so the lists must be =
+linked=20
+lists (or dynamically allocated). Debugging this is difficult, as =
+following=20
+linked lists is more difficult. However, this representation uses about =
+as much=20
+memory as the edge list. Finding the vertices adjacent to each node is =
+very=20
+cheap in this structure, but checking if two vertices are adjacent =
+requires=20
+checking all the edges adjacent to one of the vertices. Adding an edge =
+is easy,=20
+but deleting an edge is difficult, if the locations of the edge in the=20
+appropriate lists are not known.=20
+<P>Extend this representation to handle weighted graphs by maintaining =
+both the=20
+weight and the other incident vertex for each edge instead of just the =
+other=20
+incident vertex. Multigraphs are already representable. Directed graphs =
+are also=20
+easily handled by this representation, in one of several ways: store =
+only the=20
+edges in one direction, keep a seperate list of incoming and outgoing =
+arcs, or=20
+denote the direction of each arc in the list.=20
+<H5>Example</H5>The adjacency list representation of the example =
+undirected=20
+graph is as follows:=20
+<CENTER>
+<TABLE border=3D1>
+  <TBODY>
+  <TR>
+    <TD align=3Dmiddle>&nbsp;</TD>
+    <TD align=3Dmiddle>Adjacent</TD></TR>
+  <TR>
+    <TD align=3Dmiddle>Vertex</TD>
+    <TD align=3Dmiddle>Vertices</TD></TR>
+  <TR>
+    <TD align=3Dmiddle>1</TD>
+    <TD align=3Dmiddle>3, 6</TD></TR>
+  <TR>
+    <TD align=3Dmiddle>2</TD>
+    <TD align=3Dmiddle>5</TD></TR>
+  <TR>
+    <TD align=3Dmiddle>3</TD>
+    <TD align=3Dmiddle>6, 4, 1</TD></TR>
+  <TR>
+    <TD align=3Dmiddle>4</TD>
+    <TD align=3Dmiddle>3</TD></TR>
+  <TR>
+    <TD align=3Dmiddle>5</TD>
+    <TD align=3Dmiddle>2</TD></TR>
+  <TR>
+    <TD align=3Dmiddle>6</TD>
+    <TD align=3Dmiddle>3, 1</TD></TR></TBODY></TABLE></CENTER>
+<H5>Implicit Representation</H5>
+<P>For some graphs, the graph itself does not have to be stored at all. =
+For=20
+example, for the Knight moves and Overfencing problems, it is easy to =
+calculate=20
+the neighbors of a vertex, check adjacency, and determine all the edges =
+without=20
+actually storing that information, thus, there is no reason to actually =
+store=20
+that information; the graph is implicit in the data itself.=20
+<P>If it is possible to store the graph in this format, it is generally =
+the=20
+correct thing to do, as it saves a lot on storage and reduces the =
+complexity of=20
+your code, making it easy to both write and debug.=20
+<P>If N is the number of vertices, M the number of edges, and <I>d=20
+<SUB>max</SUB></I> the maximum degree of a node, the following table =
+summarizes=20
+the differences between the representations:=20
+<CENTER>
+<TABLE border=3D1>
+  <TBODY>
+  <TR>
+    <TD>Efficiency</TD>
+    <TD align=3Dmiddle>Edge List</TD>
+    <TD align=3Dmiddle>Adj Matrix</TD>
+    <TD align=3Dmiddle>Adj List</TD></TR>
+  <TR>
+    <TD>Space</TD>
+    <TD align=3Dmiddle>2xM</TD>
+    <TD align=3Dmiddle>N<SUP>2</SUP></TD>
+    <TD align=3Dmiddle>2xM</TD></TR>
+  <TR>
+    <TD>Adjacency Check</TD>
+    <TD align=3Dmiddle>M</TD>
+    <TD align=3Dmiddle>1</TD>
+    <TD align=3Dmiddle><I>d <SUB>max</SUB></I></TD></TR>
+  <TR>
+    <TD>List of Adj Vertices</TD>
+    <TD align=3Dmiddle>M</TD>
+    <TD align=3Dmiddle>N</TD>
+    <TD align=3Dmiddle><I>d <SUB>max</SUB></I></TD></TR>
+  <TR>
+    <TD>Add Edge</TD>
+    <TD align=3Dmiddle>1</TD>
+    <TD align=3Dmiddle>1</TD>
+    <TD align=3Dmiddle>1</TD></TR>
+  <TR>
+    <TD>Delete Edge</TD>
+    <TD align=3Dmiddle>M</TD>
+    <TD align=3Dmiddle>2</TD>
+    <TD align=3Dmiddle>2x<I>d =
+<SUB>max</SUB></I></TD></TR></TBODY></TABLE></CENTER>
+<H4>Connectedness</H4>
+<P>An undirected graph is said to be <I>connected</I> if there is a path =
+from=20
+every vertex to every other vertex. The example graph is <I>not</I> =
+connected,=20
+as there is no path from vertex 2 to vertex 4. <BR><IMG=20
+src=3D"http://ace.delos.com/usaco/TEXT/graph1.gif"><BR>However, if you =
+add an edge=20
+between vertex 5 and vertex 6, then the graph becomes connected. =
+<BR><IMG=20
+src=3D"http://ace.delos.com/usaco/TEXT/graph1a.gif"><BR>
+<P>A <I>component</I> of a graph is a maximal subset of the vertices =
+such that=20
+every vertex is reachable from each other vertex in the component. The =
+original=20
+example graph has two components: {1, 3, 4, 6} and {2, 5}. Note that {1, =
+3, 4}=20
+is not a component, as it is not maximal.=20
+<P>A directed graph is said to be <I>strongly connected</I> if there is =
+a path=20
+from every vertex to every other vertex.=20
+<P>A <I>strongly connected component</I> of a directed graph is a vertex =
+u and=20
+the collection of all vertices v such that there is a path from u to v =
+and a=20
+path from v to u.=20
+<H4>Subgraphs</H4>
+<P>Graph G' =3D (V', E') is a subgraph of G =3D (V, E) if V' is a subset =
+of V and E'=20
+is a subset of E.=20
+<P>The subgraph of G <I>induced</I> by V' is the graph (V', E'), where =
+E'=20
+consists of all the edges of E that are between members of V'.=20
+<P>For example, for V' =3D {1, 3, 4, 2}, the subgraph induced is: =
+<BR><IMG=20
+src=3D"http://ace.delos.com/usaco/TEXT/graph4.gif"><BR>
+<H4>Special Graphs</H4>
+<P>An undirected graph is said to be a <I>tree</I> if it contains no =
+cycles and=20
+is connected. <BR><IMG =
+src=3D"http://ace.delos.com/usaco/TEXT/graph5.gif"><BR>
+<P>Many trees are what is called <I>rooted</I>, where there is a notion =
+of the=20
+"top" node, which is called the <I>root</I>. Thus, each node has one=20
+<I>parent</I>, which is the adjacent node which is closer to the root, =
+and may=20
+have any number of <I>children</I>, which are the rest of the nodes =
+adjacent to=20
+it. The tree above was drawn as a rooted tree.=20
+<P>An undirected graph which contains no cycles is called a =
+<I>forest</I>.=20
+<BR><IMG src=3D"http://ace.delos.com/usaco/TEXT/graph6.gif"><BR>
+<P>A directed acyclic graph is often referred to as a <I>dag</I>.=20
+<P>A graph is said to be <I>complete</I> if there is an edge between =
+every pair=20
+of vertices. <BR><IMG =
+src=3D"http://ace.delos.com/usaco/TEXT/graph7.gif"><BR>
+<P>A graph is said to be <I>bipartite</I> if the vertices can be split =
+into two=20
+sets <I>V <SUB>1</SUB></I> and <I>V <SUB>2</SUB></I> such there are no =
+edges=20
+between two vertices of <I>V <SUB>1</SUB></I> or two vertices of <I>V=20
+<SUB>2</SUB></I>. <BR><IMG=20
+src=3D"http://ace.delos.com/usaco/TEXT/graph8.gif"><BR></P></DIV><BR>
+<CENTER><A href=3D"http://ace.delos.com/usacogate?a=3DplV61TMMIka">USACO =
+Gateway</A>=20
+| <A href=3D"mailto:kolstad@ace.delos.com">Comment or Question</A>=20
+</CENTER></FONT></BODY></HTML>
+
+------=_NextPart_000_0000_01C97D7C.8677BAA0
+Content-Type: image/gif
+Content-Transfer-Encoding: base64
+Content-Location: http://ace.delos.com/usaco/cowhead2.gif
+
+R0lGODlhQQBRAPYAAP///wgICBAQEBgYGM7Ozvfv7//39/8AALWEa4RSAP/3nP/vABAQGAgIEL21
+xjkxQtbO3s7G1rWtvTEpOSkhMca9zkI5SiEYKVpKY2NSa1JCWko5UoxzlHNae2tSc5x7pbWUva2M
+taWErb2UxpRznPfO/9at3saczt6t57WMvffG/9al3v/3/87GztbO1t7W3ufe5721va2lrbWttca9
+xpSMlJyUnKWcpf/v/9bG1r2tvc69zrWltf/n///e/zkxOTEpMf/W/1pKWoRrhK2MrSkhKVJCUntj
+e//O/86lzvfG96WEpZx7nHNac72Uvee155RzlLWMtUo5SmtSa4xrjK2ErYRjhGNKY0IxQqV7pVpC
+WntaeyEYITkpOVI5UjEhMRgQGCkYKRAIEAgACPe97wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5
+BAEAAAcALAAAAABBAFEAAAf+gAeCg4SFhoeIiYJlio2Oj5AHZZOTkZaXiJRlCQmbnZigkZqdm56k
+oZiaqpScrZ2cpqWol5Otpq62sLaejLOirre4pby3vb6PsbjAr7rCx5DByrmkypXPjbXM0snb147R
+1dPd3orgy9LO5Inm6O2f6ofs2u6w8Jnt8sLG9oPs+cD7+C1C9w+WLIH9CNKbFpBfMV4L5zWEp4mA
+RQKq8KXztqrMxY8gMWajN5EWpQUoUy6oGBLkv5LQyqicSXNSy48jx6WSmXISSp4ra3q8iZGkyZ4/
+eQJVOtPmTXkw4zVN+hNp0JVLifoTVbXrVaVMv/58ai5qIbBUv8r0Kfbqyqf++KBZbeuz7tqwa1vm
+BCbXK967dP3q1Wftm8qwNBN3XTvW5bl3hucmXlVz8VCcBJEpTjoJgOfPnk9azeuYVKy+PSmBLgO6
+NQC2gnEW1oQa6+pJCjp/1hTaK1aXvu5i3K2guHHWuI8jB9oT+CxKFlm/Pm48d/Xq0plzpnTsMnLl
+Za7nTp5799TDMQv30wQ+/HVK2M1vXolNeuiJ8MeTL67KeGvtWPWUiX3/dfRaeOxhlyCByKUW3U/x
+7BYAGGE0oNt/uyXYHoKudTTUWoboFoQKJJJ4m2oF9reKayweSNtZAJQoIxC8oZihjCXy1mKHLKoX
+AI4qBFEGjjpSAqSMF+7+6CKSDC4So4xIDHmkCkZOieOBSt43CZH3CQIGjl9aKeaRy2V5IJVAIrcI
+Fk++RqKUY74J55VYtrjllkeGtogmcaYpJoFKloEFmmm+FqKcc06pCplmgmalmmdRWeWjqxTaqKOF
+NjTkopRyimSWOn7GJQCHSpqoopN+uluH2QH6JKSEnNrnn6v1uCKrpc7aJ4Ydhqgbd7nqSuuqPaIi
+q7B01tnrc8g+et+OZn3T7JTK4trdtES6mqGhz+DZbJIF7kZOqmOCy+uB6ix3LKKB2gcsRyfCaaOd
+gL57jbYuNgrui+Oae6m2/FLkL722qifQvD1Cay9CkiCsisLRClxkqCc9MhwhqwivZrGvGGcs7sax
+FpzkhRGnKzKD7oIMI8bx6qlyP/p6+DLMoKoy81n4LnxziCnuDI2WPotisDqBAAA7
+
+------=_NextPart_000_0000_01C97D7C.8677BAA0
+Content-Type: image/gif
+Content-Transfer-Encoding: base64
+Content-Location: http://ace.delos.com/usaco/TEXT/graph1.gif
+
+R0lGODdh7gCXAIAAAAAAAP///ywAAAAA7gCXAAAC/oyPqcvtD6OctNqLs968+w+G4kiW5omm6sq2
+7gvH8kzX9o3n+s73/g8MCofEovGITCqXzKbzCY1Kp9Sq9YrNpgDa7hDA9Yp/4bFZVz6ra+m1G9Z+
+y1fxud1Uv+tB4Pz+j9DXB0iYIXhYmDhxyKjo6MDY+Dh5EClJOWmJiJmpKcj56PkJuidqSSp3WWmK
+OqbaYArWWvUqIbo6y1RrGKkgm8sxSrL7QRzwC2xx2mFMg5wc4XnRvPMMzcD6QC1kfb16m7Cd1H0d
+Kw5FDmz+lt66nuoH+j7Xjhn7V98pDZiPnyYdj11AXlHC/OtloN8ahRQYHmlTa6CbesJgSURCcYHD
+/jPdlmEbVDAjNkXI9mlMeLGISI0p1cwLV4lKvIAbOWaDmXDKSkgtxbzEdQwdSEi2emr5+c1lQ6NX
+kNJTxlTmPX7Tooa8WYqgzWPgqGqoqeugpkRWv5UFMjSQR0Jnw4ElQ3MTyRFpjVT0FnTYWzh18cY8
+0dfGXb++6Mh9MZgwLL6JPSBU3FBwV4uPIRviNtlyiLaaaXX2+jlraD2cR6Mz/VVKacWVl6z2O7bJ
+a2+Zx6GOhtX2bW25ee7Fs5t37ZE+ZucyJ/H3luCUTQo37pj5x+E8eUAnhVyZdelcy1DXtj04udgV
+lANGHdhs+unmz4feeF1w5/VKWcfXBbt9U9r31guq0+9Ff1gA6Ap2BHJkj4BHhXIgOyQpaAaEdjVI
+WikSLmQFNfThdaFhrQFlWodbOLchZCKiwAqF8gjVm3gsfofei85xd6JeLbrohFM4ynYjczXSBeNu
+PwK5Fnd/PVGkkSg19tCQD36opIyHRSnlOVQSMVVxJVKpIw4GOUlJl9Vc6VuQOYCpj5k3oBlmj2eS
+CYGbXsKJW5KF0fkFlG6xwSSeSyanop/ysSnoZjkVetqhiOY45aKyOaoapJJOSmmlll6Kaaaabspp
+p55+Cmqooo5KaqmYFgAAOw==
+
+------=_NextPart_000_0000_01C97D7C.8677BAA0
+Content-Type: image/gif
+Content-Transfer-Encoding: base64
+Content-Location: http://ace.delos.com/usaco/TEXT/graph2.gif
+
+R0lGODdh7gCXAIAAAAAAAP///ywAAAAA7gCXAAAC/oyPqcvtD6OctNqLs968+w+G4kiW5omm6sq2
+7gvH8kzX9o3n+s73/g8MCofEovGITCqXzKbzCY1Kp9Sq9YrNpgDa7hDA9Yp/4bFZVz6ra+m1G9Z+
+y1fxud1Uv+tB4Pz+j9DXB0iYIXhYmDhxyKjo6MDY+Dh5EClJOWmJiGkHBqkpyCkH6kk6KOpmGmDq
+h4rFWqnqmnUZucDaOmtky7B5Cxqre3Qp4QlhqWAsvBHK54tCnKC8XIF8wQs0TX2sGRG9m7u9Spr8
+/BS+jGtepS1ugKvWvg2/Ji9Mn4pOCa9/pW2vCJasLspOcZJFbgy2RNOABepmZiEHgEjCpIEorVEz
+/lrWJvbblbFZnXUbqTgsR/HdxyIUy+Qx+CtlxZMqvz2UCa6VS0jFbCrBRlOayikAL46QmCTUQKHv
+TPKstMUnEVjJoEppybQFUh/4HjY9B/NWVRpdT6gLGmsllDZqY5x9K7Vmwj1x2sajSldspqV6Ru5F
+e+elIy5z//jBeaZgR0I66cKMG/iB3avrRIWb7GQrqsuJNW/2hjmnZ8uLvCym1i80y8r3KCBeAtmV
+2tfD5LoLdE01mou6GRvqTRZ4JmawhWMKTftG8tu6l7s1rgL6DOBhczifHvtLiOrPr2MfPZUE9+je
+2QAGiWe8CPVf+NYmL71k8cKS2cPRirFBfrD0/vVzVd4fO2X1Ip0HBeqCV33l4XGbRwF+ssOBB6lj
+gYSGNFghb/sVw4OFhXC3IWgdYlifgvKZ6OGFJKLkmhUpvrEgUSvaF0+DNMIoTowEpaOjaQi+KOOE
+QDqVF4GoOcZijoGdciNpo4DX2ir1ZHdPk6K1cx5qrP202INabjmMQ6fNCOaVtgzp2IlJJbjiJ1Zm
+w2ab+r1JRpxyxoRmeu7dGRN/XvLpVWZ7AlrOWn8SKuCYiGqh6KJ49mieo4s0KqlJIVZK1KGYNmGn
+dXRuOiAaQ2066aAjktqTqRGimqqmyrFaapbWwRorpbPSWmuZUuJqpkyQaqArr7Zxk6ewLhBmLqyL
+XyV7lVXMRkHls+9JGyS11l6Lbbbabsttt95+C2644o5LbrnmnotuuuraUAAAOw==
+
+------=_NextPart_000_0000_01C97D7C.8677BAA0
+Content-Type: image/gif
+Content-Transfer-Encoding: base64
+Content-Location: http://ace.delos.com/usaco/TEXT/graph3.gif
+
+R0lGODdh7gCXAIAAAAAAAP///ywAAAAA7gCXAAAC/oyPqcvtD6OctNqLs968+w+G4kiW5omm6sq2
+7gvH8kzX9o3n+s73/g8MCofEovGITCqXzKbzCY1Kp9Sq9YrNpgDa7hDA9Yp/4bFZVz6ra+m1G9Z+
+y1fxuR1c5+Ttbzz+88c35kdY6LdQKHhmyNjoGNaoqPW4hxgZ8ChJxagH1kCp6cSpQlkZSmb4UnpQ
+6nkqkwrbSmiZ+Ep3aDNLEXs7Qjszm4sB7OtR3GKLsLqBbHzhfKLs0NoR+Mw7bDI9kWngqqGN/SkO
+wh3ey2oaUf58eA0YbS7/vf7Q/jraic9mTw3uyxE0ej0AWoB3CtQ9gkQMZvO3htkyhkscSqAYUZhF
+/isbF3bsI1HNRwXn5lSTM1IdPzcnTdrDuEihoJQwzchUNHKlGIACIdqshPCizyCQJipLmZHcUKRI
+yuhjlS9PyQRMj4AzWKdqTJLpuGoVcg3rp1tXLyGqN8WVwz1ff95cBjUtprULyb79FjeKJ3Evh3pp
+ORHvk1zl/LXNAtgox8LZZobcybjC4U2P/7bzOxdl5UnnMKPdeneQ1Gaek/AUyJLtvtJELZpNyoC1
+V72mpv4cKyJoQ93ugJbgvUNnb2oogAczPk4dcVI1SQhPTvUenOYHbUOXvpxGaKpPr4fDDmS792O1
+xycsb15TzvTq18lmTxk8/Dvo52/bDeG9/VrP/rW73x/CazzQBGA8Agb3X4GkeVNQggpmsFlsyAXo
+4IMDMShfMhVa2E1iEk6XH4cXopbfhLltKCI74n2oYYgpqhhhdri4+KKETpHIiwsE1sgVf9QppyOK
+IhrXlUeTdUJjilrpp8p6Qx5plZDzQWmak/uZWIWV8FE5WH3jYclZhslxGR9uY5KZpZcBMYnFR2xe
+AaZmMrZ3nZvtvSmaao5tuRGeOVg3l5+pmQnFgZ8ByJugx70WJ3S6KSpLT5DiNFqXKyroWqExPhjU
+pEFeiildomxqIUKesuBhjfCciguGPAKZFxOgPgmXpUW+CiurqN6Kaz2Q/OgDmle62mubhhZLahmO
+yKZJLBqNLhtos38eCi2M0g5YbYez3qAre6lim622yhYU7kPHolGuZOfGmu5ugGbm37PhPidvu1Zh
+Ym+bguW7Cbv8atrfv6YJDCfBBh+McMIKL8xwww4/DHHEEk9MccUWX4xxxhq/UQAAOw==
+
+------=_NextPart_000_0000_01C97D7C.8677BAA0
+Content-Type: image/gif
+Content-Transfer-Encoding: base64
+Content-Location: http://ace.delos.com/usaco/TEXT/graph1a.gif
+
+R0lGODdh7gCXAIAAAAAAAP///ywAAAAA7gCXAAAC/oyPqcvtD6OctNqLs968+w+G4kiW5omm6sq2
+7gvH8kzX9o3n+s73/g8MCofEovGITCqXzKbzCY1Kp9Sq9YrNpgDa7hDA9Yp/4bFZVz6ra+m1G9Z+
+y1fxud1Uv+tB4Pz+j9DXB0iYIXhYmDhxyKjo6MDY+Dh5EClJOWmJiJmpKcj56PkJuidqSSp3WWmK
+OqbaYArWWvUqIbo6y1RrGKkgm8sxSrL7QRzwC2xx2mFMg5wc4XnRvPMMzcD6QC1kfb16m7Cd1H0d
+Kw5FDmz+lt66nuoH+j7Xjhn7V98pDZiPnyYdj11AXlHC/OtloN8ahRQYHmlTa6CbesJgSURCcYHD
+/jPdlmEbVDAjNkXI9mlMeLGISI0p1cwLV4lKvIAbOWaDmXDKSkgtxbzEdQwdSEi2emr5+c1lQ6NX
+kNJTxlTmPX7Tooa8WYqgzWPgqGqoqeugSXzBhuokpwmlVw9mm+SLSFZEW5VzMYDFYhVCXR4V+ejJ
+WxRwib7DBD8xHHivCsJb7CCGypjtOTyPlVT+2tUiwmrsuGX+ctlIaEqjv3iDyvH0tNSqK9xdUlqe
+z9Z2/cSOcVt2oMlAcssz6BE27Q1YLQ/n9Rnj8drJNftWtrxq85M+npN26su63eiuizvny33pdIvg
+w2vDTpSzeZZlxqdHsz5cnbSoy5tXzHVTYu2r68Nv5O8CgDYJ2Ntwr2VBIF4HHuXNgrPlgl9cqDio
+1G8JHmbPhQWFQuEdGnrW2oc9RDiLiGiYiJcV1JBYzlmbyRdfUFcFx2KIUrDSIYRCeRdjTodN1SNO
+TqAXI4rMABlkID/yGKSRZbnXo5PEQVnkji8mKeSQV2K5W2QPSflXcFxKJeaYM5ZpppZUOlOjmUTa
+AFyaeiFZoJw8MWmfneytCaee5/HpjJ9/0lenoHdu6YuhoG2T45Rt2ulll4rSIuOkG1Zq6ZAxZbrk
+o5xy8+mNoY5Kaqmmnopqqqquymqrrr4Ka6yyzkprrbamWgAAOw==
+
+------=_NextPart_000_0000_01C97D7C.8677BAA0
+Content-Type: image/gif
+Content-Transfer-Encoding: base64
+Content-Location: http://ace.delos.com/usaco/TEXT/graph4.gif
+
+R0lGODdhmgCXAIAAAAAAAP///ywAAAAAmgCXAAAC/oyPqcvtD6OctNqLs968+w+G4kiW5omm6sq2
+7gvH8kzX9o3n+s73/g8MCofEovGITFYAyuYDwHRKF9Gp1VC9TrNaJ7er/IKR4nERWjbD0Gj1md12
+B+Fw+Y9Ot/Pweb2O3+d3A1gnOEgYZ7iGiKe4EojF6FgCySA52VEpQYiJoenZSMZm8ulRCsT3cdrZ
+wHmxygpx+VQYmzl7AGsLyqi7y9Gb9ksSPMxSbPyIm3yyzBwCheD6PBKVlUrdnOCbrRHd2k35bRlO
+KixcvnGeXr3ObpoI/n48T1//eK+Cnm/Kn7LvT11AUgMJFqx2EGFCEQAXUmjocFNEEBAnPrGYCWNG
+yo3eOHb0mKEiSGkjX5U0efJhSpUrJ4g8+bJkTJktJdaUdTPCTJA7Pfb0mfNiUHlDyRWlchRpUgU/
+NTbF+BTq0m1TSZrhhiPqH2xCtGadhqqLMx9ea/QaUnYGsjlX1rLdchatFbdh544laxds17aAjqRV
+G8oIVlTjBHO9iSjn3ZFxycaT0riHtb+LFu+g/ILuHb6J93LWKxlM57pi++LkGNhB4cqr8zZ8fJQJ
+Zn7WplaZfW8wzKq5ePv+DTy48OHEixs/jjy58uUaCgAAOw==
+
+------=_NextPart_000_0000_01C97D7C.8677BAA0
+Content-Type: image/gif
+Content-Transfer-Encoding: base64
+Content-Location: http://ace.delos.com/usaco/TEXT/graph5.gif
+
+R0lGODdh1wDDAIAAAAAAAP///ywAAAAA1wDDAAAC/oyPqcvtD6OctNqLs968+w+G4kiW5omm6sq2
+7gvH8kzX9o3n+s73/g8MCofEovGITCqXzKbzCY1Kp9SqAYDNWrevrBfADae+X7F5RCaf1520mg3H
+uN/xumRetusfeO/+z9CnBUh4IAhWmBggqKiI15gI5rYICYi4mEdZaXdpuNC5eQZ6FRi6NkpaahqG
+mqq6WtXq+gobJTtLW9t0i5urm8Tb6/tbFCw8TBxkfIyc3LPM3OycAx0tPV1TbX2NHaO9zd3d8g0e
+Lj6WQe55LqNe3uDOvhGvqUEvb3F/X49/sr/Prx8aDwADCvxQsKDBg/NAKFzI8MLDhxAjTqBIsaJF
+/j4DO268SCLju40iNXIoWQslSpMk/aFYWQkmTJYCZ86kKe/mTZzidu7kOe3nT6DEhg4lmtLFUaSm
+li5laknB06cGqSp7czRNlyt0CD0aN0dpWK9fV/QRO3bPIbOM2J5V23ZMXLlvOa1VcUjnXbtz/e31
+2xdOXrd1AReu89dwWrpl+TZWPInwYsdaWRxmXNlSZLCbLXfWnAmtH2+Zo3K1YVUqgtTUErCGGtK1
+6dXZcIx6TeN27Ru69aB6jVtYcBi/d6M2N0UW6+HK4zSfwRyeYAfLbVNnc6s6b45mgqWOzp0VhO/W
+w28xRn77ePHr25VvH+sO9Pfwk4P0Rt+8LQpW/sHLt38fcfnV54Q2/Q1IIBPfUOVfgLtIhJ96FQzX
+UD4RHgehgnJcaJyFS6jDIIL/AWOPgBJmiEQ8U4noIBH0rHjihka8aCKGJRbTxlYxyjjEPzraWKEy
+BP3YYZA/AOQUix4eiRCRuTkEhEJZKYniDhMpRWWVrUE5TpZLbsmlZV5+uWOOYpZpJpondanmmqSF
+5hCcIXQlGhYd0RlSaQh9RpCekg0yJ5+BCmrPYydNhhmehSK6p6GLEirHZSYE9iik81AqEab5aIoG
+p/x5Gimod4gawWB4kToeqp+qCk9i6biaJ6utypoqrVLBmqmtm+rqGq6VMpqro8EK26mkw1r6/quf
+oRI7Ia+7MrsqtK9KG62y0wIbK7bHKtonss9aey23k1J7EbnhAhonuMlOpe66iZYgbhtyeuaHSPEq
+QaFLsgXVHXKO9PsJv+z5W0i+sUmXjMEieJfwwNf9ovCcpRbFBTQR83DxkCPCkrGbLYbSsZETJxUf
+mZuEnA6PIFsBIsclqxzTy1pCgrLJNkdChT5NAegxzTz3/K8UCZ0stMQ+7xdm0E9kVDObS3uE89MH
+R13gpEo/CO/VH75EtYb6elU1OnCNVsy8A90rtLe8qX1ou1AYS425y7q9C9y22d22tgU6+xLfs8qd
+ot/j4r2u2Uv7ihrihRtet+DwKn4u28A4SZ6t3oujmzPlxQJereT4ct4F6J0z/rbonHm+LdkV0303
+2t2SnpzqPcreN+Yf3Y577rrvznvvvv8OfPDCD0988cYfj3zyyi+PTQEAOw==
+
+------=_NextPart_000_0000_01C97D7C.8677BAA0
+Content-Type: image/gif
+Content-Transfer-Encoding: base64
+Content-Location: http://ace.delos.com/usaco/TEXT/graph6.gif
+
+R0lGODdh5ACVAIAAAAAAAP///ywAAAAA5ACVAAAC/oyPqcvtD6OctNqLs968+w+G4kiW5omm6sq2
+7gvH8kzX9o3n+s73/g8MCofEovGITCqXzKbzCY1Kp9SqVQjIamfaLambLYHD18TY2zqTQ2qAqF0+
+tNequRtkx8/j9vuq/wHo0edXRfgn2HGomEhFWHjyyNiosWhoiSLJobmJKcWZ6YkBWkk5JSqGakGa
+oQrl+mbaKnsB+5THghu4twvH55sGPCg8fBaHYAyTPLLMNnYsZxAGqUzNbB2LfQWpnfsJjazQ/fcN
+Li1eM36kXo7O1Q6NzR4Jz9cwb4I/pN+kzc9cb9uDf2wCWhlHEI9BRxASBlp4quG7KA6LzKu4CSJF
+/gkYN3TU8REIvpCjNN6aQLKWyX4VUrZcyYSfSwozadTE8e9mBJ0xeKZb1RNmkoQ+7wlFQlTZUSMO
+izJwmsZQK6UbI1Z6AdWb1akuspJb+hQrWCwZu44VOchs1Vdpo651QtLrubcs22ple1Lh3bxwC+7t
+C1jvV7x1Bdc5u+OmV7kpGH95PJivEp2LEdvcQhlNKjpLuhBR8+XZNdFDSf/g1atZMdWfiYHUNQl0
+atkWUfOwhZLWKt09cPf0vZM3TeA3iHc17gD5PeVchMtgVYv5Aug+qF92zhF7cO3FuR/3nhz8cthY
+xOciX8p2J/Xl2edwn552bNbt5femv970ajCT/u1X5x+aZ5tphhR+5oTVmGRzHbjTYYWZwWCDCT4Y
+ToQDORiTURZqmAmF7mz4IT0ZJgfidBgOJWGJ0Uw4WYoqBgCVY4Zd+CKMJ66DUo02sogUTTXG2OJL
+KgKJopAlEomjSkfe+FlJS/LYJFcbImnRVSBSGaWUEWJJVllbMhnERzLawCVadh1Y5mkPfQmlmWui
+CWZ1fsHZpppzgpPmbZDhGaeeAJmTJ0j5ANqnoGIQWmdiHcZTKE6LHhOoo48eJOCgt1XaIab9GHhm
+d/oNqGlprr3pKaf7AdgZfIq8h54eqtY36qqlxjqff7W1KiuZ0jW063W4eplOr+GZpyuxwxJYgY2x
+Awnb3K/RmdoYs09J+5uzLb0arbXx0QortMNhGwq423p7mrjZaRsuueOGWqC626EbibvrjjkasvmZ
+Gy+7oNK7DrU64unvv5AqK/CW+Bas48EI//jpwg5Px+/DEk9MccUWX4xxxhpvzHHHHn8Mcsgij0xy
+ySafjHLKKq/M8sgFAAA7
+
+------=_NextPart_000_0000_01C97D7C.8677BAA0
+Content-Type: image/gif
+Content-Transfer-Encoding: base64
+Content-Location: http://ace.delos.com/usaco/TEXT/graph7.gif
+
+R0lGODdhvQCpAIAAAAAAAP///ywAAAAAvQCpAAAC/oyPqcvtD6OctNqLs968+w+G4kiW5omm6sq2
+7gvH8kzX9o3n+s73/g8MCofEovGITCqXzKbzqQRIp9BqaIoFWLebbJYLrni94fJjPDarFWjy+h1o
+f+FrOZZet0vxav2eb6YH2Gc3GPaHZqBlaLV44KbICOX4WJnwJxm1QElpmWmEidDZ6fkpRFoa14Bq
+usMaKerw2mozi2o7SwsTutl7pnuTC3sZIQyMYvyafBxjrMrg7Mz8wSu7OlE9PSL9DC2mbcLd7U0h
+Di5hnpt+Tr3+a2HOzoYhHB9nL4+/TC8PnxGtAR+zbNjQdekHQeCwdwERXjtYsItCSRPHJfRQkQ9B
+/n8RO2SE81HcR4vaRrrDyG4kyYsgNmZyeSGeyoWtZq4stk2XzZssRexEslNfiZ9EYDbkN5QoEKUC
+mQJyejQcHqU8DSJ7Y9QjxKuBVFSkqghssxVfWYh1cbZqR69JbqXNmJbmUkhx1ZZDO6SN3Zwo0daF
+J+eFybE9/OClJuMvOkEtVCqWW8NP3JmPIc+Q3NgnjaxkJSfieyUyDsPQAsckUTlWLcaAP5PTXCuY
+6SuzQweTnYYzBy21T8tePcey7VW9fY0+blE3Unp69x6+FzzzPNRJmyeGDsns6+FDN1lHVjwFK+VW
+pZYL/6+Q9O27xbf8Xoy19odauYKHjx29eeL1/u0383zHetZE5d9lvJEmIH2+ubeZIwgmyN+CBfp1
+iXwQKlgeW4KNpx+Di901n1nq4BfiWgxp6FUyaWzG0Ylk3Zchefud5yKK23CTWk/fYGjjezv6IJRx
+F0okIQ9NkfJYSPbkmGGRSXoUZBATOXhdQE0VMSVvVcakEJM/ErnlYmVhiZGMLWETElD1PZnQYGq2
+J9wJI3J3RJcVClYaaG/+I2SP91C3hJ19+mdmk23xGSGDhRp66HI8orYoo5oUyZ5PWspZhUxo3pgK
+bJNQWqOV0+n56ZcfgjkqnaWaCCKXA3q6BY4EnvrqmYe0yhytOvYHhjRwyUKem13h1NedoDpa9wZA
+7TxyZbF97FrmmFvVAe1ukao267OhpscsnIhOVSuq2CLbIh22QAlstqyC9Ciayh5bLbuDbmrquvHK
+myq9rtZ7r7nzpuutve2CS4y+vBIr6VMFt8lpwvlStHCigCIc7kvReednpf8a4hqzk9XTr0azXTvt
+xnE+FRjJ6A7s5WgWsqixc+a+DPPDJ6NMs4E2t5wDgDqM8gXPPbOm3mEkmvIgsEdHu7TFHbrbMXNP
+czw1lE2HVTQwV6eoF2bTZFeY1w79IPbYYWdttpE5p+3y1mxH5vbbDV4s91x134133nrvzXfffv8N
+eOCCD0544YYfjnjiii/eQAEAOw==
+
+------=_NextPart_000_0000_01C97D7C.8677BAA0
+Content-Type: image/gif
+Content-Transfer-Encoding: base64
+Content-Location: http://ace.delos.com/usaco/TEXT/graph8.gif
+
+R0lGODdhoQDPAIAAAAAAAP///ywAAAAAoQDPAAAC/oyPqcvtD6OctNqLs968+w+G4kiW5omm6sq2
+7gvH8kzX9o3n+s73/g8MCofEovGITMYAAKXzwVwwm8+qgWrNMrDarvfb4YK74nG2bK6hJ+v0ktN2
+t+LpKZEujwLxcu3U3mf0N+jAJ2MoOEi45YOYqPjX4MiCOEkDqSi542h5Qoe5yOjUWfIJGjlGSmJ6
+qhf4BtXalPm6gieLRnuZdxoB+aL6+AtRpmsSLIxKTBwKgowM7Go4aYyR2yz1NL1RbY1ZCAvnG9LN
+DKoJA32gzo2tIIvuwn6lU42bM0/fiKtsk69fjws/N/8+iBlIEAqwd/B4AFrXKU7BcQgQijokMCI4
+/nlX9LRSaEuKwAxtJvo6eA6kijXSNJScU7JctpVbqDy75ErSQ4opYgaAZvLkGZ0/w8AMmq4QO6QJ
+cq6rM4/pz5dmirl8F8Yp1ldaKVh1ua3WzYreOJVyKO5pha4qR0jVyI0sG6kX3tY16pWtP0938TIL
+whRuWp10hVjaeVUkTpS15EJcVTdjY7WInXlzPHlqYJJYCgectfly0Y1kJB8DOzqeCM8Vc/HlnPri
+ajjuWvvsIQ1x0GApm/JhbaHlVMzkOPeuTLqe7N3GP/YdUpjUPZKQZ/+YTr249evYvao1uJ17w7Xf
+PUT/3Ot57MHm+5lU1d078cQ93YLtHbzpkYnP/vCT118Ef7Qtold+d9jX3lbsZbYegguqt199flnD
+4H88KUhhhfIto5qBEirxW1sWogBcdcnNBGEs2WlHiYgojqhUbS5OGFKHspHzzYaWLUQfjv7NGNcS
+vK02Hoc7HtJjVs4ltUuGbMSyZIXw6chQkUBaMdKTErCS3oVfdEblibZZKaYXNsFoIyDxlWlmg0aS
+VlmUb5q3yWFbFvjjlSvik6Jtd8o4h0OCQVSigzjYRA2hfuyxFluFinXSLDaelVlMWb74WqW+sXTj
+aVJqNidAJPZxTSWYesriDRmBuSWGmR6pKqiusvkhrGoU6Oapo/gTRYhe7orRpSqGmgRQMm36/qCC
+j6qao0j53CIqqod22dF7HNK1LGG9IJfqTNiiR+2o4HyLz5q/akmUuOE1Sua56OpqqK15tatnq5Me
+GJmc9gbZKb7B0VvvuwAiAV+40fTLS7MzHBRtIMPEShZzjKJFmYka0sdqt1VRmrG8HocTb65Jagyy
+xQ1ft5e6JzeSssoib9Kyy9miWcdwK1+sxnfqzPylY2PhnOqZI6fSolxDkrpwtf0ETGfSSedZMo8L
+Gxx1oItBzWTWwVKtdR5Vcg30q5rpW17YzqxK9s1m88sPVWv7iGjaPBe9EnJpv0wpR55wS+jDh+rt
+Ft81Aeo03e3hCuXc90rbHFd3CE7s241nmLVn2Es33WelkNO4r9dfGy4wYMcquznETUY6+piShz64
+wpsivvqsX+OnjOJV3NK2a7F72DrYLNO6D8AoI7yHuYYxVKzwgoyi/O6Vv+73wM5n3jfhtvcc4+Xz
+TU8zvNJzTz344o9Pfvnmn/8x+qwzrT77are/vuzwz0+/5ITXj3/++u/Pf//+/w/AAApwgAQsoAEP
+iMAEPqAAADs=
+
+------=_NextPart_000_0000_01C97D7C.8677BAA0--

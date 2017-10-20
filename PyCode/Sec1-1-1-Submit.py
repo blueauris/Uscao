@@ -1,56 +1,34 @@
 #!python3
 # -*- coding: utf-8 -*-
 
-## PROG: Ride
+## PROG: test
 import os
 import random
 
-filename="Ride"
+filename="test"
 finname = filename+'.in'
 foutname = filename+'-p.out'
 
 
 #### Codes Start
 def calculate():
-    ####主算法
     source = readin()
-    comet, group = source.split()
-    comet_code = 1
-    for ch in comet:
-        comet_code = comet_code * (ord(ch)-ord('A')+1) %47
-    group_code = 1
-    for ch in group:
-        group_code = group_code * (ord(ch)-ord('A')+1) %47
-    if comet_code == group_code:
-       result ="GO"
-    else:
-         result = "STAY"
+    a,b = map(int, source.split(' ') )
+    result = str(a + b)
     saveout(result)
-
 
 
 def gendata():
     ## 生成测试数据集
-    oriData =''
-
-    comet=''
-    n = random.randint(1,6)
-    for i in range(n):
-        comet += chr(random.randint(0,25)+ord('A') )
-    oriData += comet + '\n'
-
-    group = ''
-    n = random.randint(1,6)
-    for i in range(n):
-        group += chr(random.randint(0,25)+ord('A') )
-    oriData += group + '\n'
-
+    a= random.randint(1,1024)
+    b= random.randint(1,1024)
+    oriData = str(a)+' '+str(b)
     return oriData
 
-
-
 #### Codes End
-####
+
+
+
 #### Template codes start
 def genin():
     ##生成 in文件
@@ -89,10 +67,10 @@ def printout():
     fout.close()
 
 
+
 if __name__ == '__main__':
     basepath ="e:\\Code\\usaco\\PyCode"
     os.chdir(basepath)
-
     if not(os.path.isfile(finname)):
        genin()
 

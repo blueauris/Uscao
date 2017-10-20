@@ -11,8 +11,8 @@ finname = filename+'.in'
 os.chdir(os.getcwd())
 fin = open(finname, 'w')
 genData ='Test'
-## 生成测试数据集
-##Todo
+## 生成测试数据集 Todo
+##
 
 
 

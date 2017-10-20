@@ -11,7 +11,6 @@ os.chdir(os.getcwd())
 fin = open(finname, 'w')
 
 ## 生成测试数据集
-##Todo
 genData =''
 comet=''
 n = random.randint(1,6)
@@ -25,6 +24,7 @@ for i in range(n):
     group += chr(random.randint(0,25)+ord('A') )
 genData += group + '\n'
 ##END
+
 fin.write(genData)
 fin.close()
 

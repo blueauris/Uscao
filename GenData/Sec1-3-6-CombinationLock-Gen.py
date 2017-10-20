@@ -10,9 +10,7 @@ finname = filename+'.in'
 os.chdir(os.getcwd())
 fin = open(finname, 'w')
 
-
 ## 生成测试数据集
-##Todo
 N= random.randint(1,100)
 L1=[]
 L2=[]

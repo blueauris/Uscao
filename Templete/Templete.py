@@ -12,9 +12,8 @@ foutname = filename+'.outp'
 result='Hello world'
 print(result)
 
-####主算法
+####主算法 Todo
 fin = open(finname, 'r')
-##TODO:
 
 
 
@@ -22,7 +21,8 @@ fin = open(finname, 'r')
 
 
 
-##TODOEND 
+
+####主算法END
 ##结果写入 pout 文件
 fin.close()
 fout = open(foutname, 'w')
